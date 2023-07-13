@@ -1,0 +1,59 @@
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+h2 {
+    font-size: 20px;
+}
+.record {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.color {
+    width: 400px;
+    height: 40%;
+    margin-bottom: 30px;
+}
+.thought {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+input {
+    font-size: 15px;
+    size: 10;
+    width: 320px;
+    padding: 20px;
+    border: 0;
+    border-top: 3px solid #bbb;
+    border-bottom: 3px solid #bbb;
+    outline: none;
+    margin-top: 40px;
+    transition: height 0.2s ease-out;
+}
+label {
+    position: absolute;
+    top: 55px;
+    left: 33px;
+    transition: all 0.2s ease-out;
+}
+input:focus {
+    height: 220px;
+    transition: all 0.2s ease-out;
+}
+input:focus + label {
+    top: 10px;
+    transition: all 0.2s ease-out;
+}
