@@ -1,0 +1,94 @@
+body {
+    width: 100%;
+    height: 100vh;
+}
+.background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.background::before {
+    content: "";
+    background: url(../image/징징이.jpg)center center / cover no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+}
+.group {
+    height: 60vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.welcome {
+    text-align: center;
+}
+.welcome img {
+    width: 340px;
+}
+.login {
+    width: 466px;
+    height: 80px;
+}
+input {
+    font-size: 100%;
+    width: 100%;
+    border-color: transparent;
+    background-color: transparent;
+    text-align: center;
+}
+input:focus {
+    outline: none;
+}
+input::placeholder {
+    color: black;
+    text-align: center;
+}
+input:focus::placeholder {
+    color: transparent;
+    transition: all 0.2s;
+}
+input:focus + .under .circle {
+    width: 15px;
+    height: 15px;
+    transition: all 0.2s ease-out;
+}
+.under {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.circle {
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+hr {
+    border: 1px solid black;
+    width: 100%;
+}
+button {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    transition: background-color 0.2s;
+}
+button:hover {
+    background-color: rgb(193, 193, 193);
+    border-radius: 50%;
+    transition: all 0.2s;
+}
