@@ -1,0 +1,13 @@
+<div>
+	<form method="POST" action="{% url 'login' %}">
+		{% csrf_token %}
+		<input class="idinput" name="username" placeholder="아이디" type="text" />
+		<input class="pwinput" name="password"  placeholder="비밀번호" type="password" />
+		<button type="submit" value="로그인">로그인</button>
+	</form>
+<div>
+	<p>계정이 없으신가요?<br />
+		<a href="{% url 'signup' %}" >회원가입하러 가기</a>
+	</p>
+</div>
+	
