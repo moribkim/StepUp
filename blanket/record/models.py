@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
-# from account_app.models import User
+# from account.models import User
 
 # Create your models here.
 class Mood(models.Model):
