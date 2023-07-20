@@ -25,5 +25,5 @@ urlpatterns = [
     path('record/', record, name="record"),
     path('record_submit/', record_submit, name="record_submit")
     #path('login/',include('account.urls')),
-    path('account/',include('account.urls')),
+    #path('account/',include('account.urls')),
 ]
