@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from account import views as account
 from record.views import *
+from mission.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('record/', record, name="record"),
-    path('record_submit/', record_submit, name="record_submit")
+    path('record_submit/', record_submit, name="record_submit"),
     #path('login/',include('account.urls')),
     path('account/',include('account.urls')),
+    path('quote/', quote, name='quote')
 ]

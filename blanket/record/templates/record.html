@@ -31,6 +31,7 @@
                 
                 <div class="right" id="selected-colors-container">
                     <!-- Display the selected colors here -->
+                    <div id="color-error" style="display: none; color: red;">Please choose up to 4 colours only.</div> <br />
                 </div>
             </div>
             
@@ -97,8 +98,18 @@
         event.preventDefault(); // Prevent form submission
 
         var selectedColor = colorPicker.value;
-        selectedColors.push(selectedColor);
-        addSelectedColorElement(selectedColor);
+        if (selectedColors.length >= 4) {
+            // Display error message
+            var errorMessage = document.getElementById('color-error');
+            errorMessage.style.display = 'inline';
+            okButton.disabled = true;
+        } else {
+            selectedColors.push(selectedColor);
+            addSelectedColorElement(selectedColor);
+            // Hide error message if previously displayed
+            var errorMessage = document.getElementById('color-error');
+            errorMessage.style.display = 'none';
+        }
     });
 
     function addSelectedColorElement(color) {
@@ -147,6 +158,10 @@
         }
         selectedColorsContainer.removeChild(element);
         updateSelectedColorsInput();
+
+        if (selectedColors.length < 4) {
+            okButton.disabled = false;
+        }
     }
 
     function updateSelectedColorsInput() {
@@ -243,9 +258,9 @@
             background-color: #c0c0c0;
         }
 
-    /* #selected-colors-container {
-        margin-top: 10px;
-    } */
+    #selected-colors-container {
+        text-align: center;
+    }
 
     .selected-color {
         position: relative;

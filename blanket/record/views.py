@@ -19,7 +19,6 @@ def record_submit(request):
         selected_words = request.POST.get('selected_words')
         selected_words_list = selected_words.split(',') if selected_words else []
         
-        
         mood = Mood.objects.create(user=request.user, text=text)
 
         for color_code in selected_colors_list:
