@@ -14,29 +14,39 @@ body{
     align-items: center;
 
     overflow: hidden;
+
+    opacity: 1;
+    transition-duration: 1s;
+    transition-property: opacity;
+}
+
+body.fade {
+    opacity: 0;
+}
+
+button:hover{
+    cursor : pointer;
 }
 
 .appBody{
     width: 390px;
     height: 844px;
-    background-image: url("../images/home-dark-close.png");
+    background-image: url("../images/window-bright-open.png");
+}
+.header{
+    position: relative;
+    width: 100%;
+    height: 41px;
+
+    top: 85px;
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
-
-    transition: all 0.6s ease-in-out;
-}
-
-.header{
-    width: 100%;
-    height: 25%;
+    align-items: center;
 }
 
 .header-box{
-    position: relative;
-    top: 85px;
-    left: 105px;
+    position: absolute;
     width: 180px;
     height: 40px;
     padding: 10px;
@@ -59,58 +69,27 @@ body{
     font-weight: 400;
 }
 
-.homeBody{
-    width: 100%;
-    height: 55%;
-    display: flex;
-}
-
-.homeBody button:hover{
-    cursor: pointer;
-}
-
-.windowBtn{
+.Btn-mission{
     position: relative;
-    top: 135px;
-    left: 70px;
-    width: 100px;
-    height: 50px;
-    opacity: 0.05;
-    
-    background-color: transparent;
-    border-radius: 40%;
-    border: none;
-    transform: rotate(-35deg);
-}
-
-.windowBtn:hover{
-    box-shadow: 0px 0px 50px 10px rgb(255, 255, 255);
-    transition: 0.2s ease-in;
-}
-
-.deskBtn{
-    position: relative;
-    top: 190px;
-    left: 170px;
-    width: 90px;
-    height: 130px;
+    top: 193px;
+    left: 65px;
+    width: 210px;
+    height: 110px;
     flex-shrink: 0;
     
     background-color: transparent;
-    border-radius: 40%;
     border: none;
 }
 
-.footer{
-    width: 100%;
-    height: 25%;
+.Btn-mission:hover{
+    box-shadow: 0px 0px 100px 10px rgb(232, 226, 168);
+    transition: 0.2s ease-in;
 }
 
 .Btn-bar{
     position: relative;
-    top: 70px;
+    top: 562px;
     left: 248px;
-
     display: flex;
     justify-content: space-evenly;
 
@@ -138,4 +117,29 @@ body{
 
 .Btn-setting{
     background-image: url("../images/setting.png");
+}
+
+.Btn-back{
+    width: 45px;
+    height: 45px;
+
+    position: relative;
+    top: 585px;
+    left: 173px;
+
+    background-image: url("../images/back-button.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    padding: 6px;
+    border: none;
+}
+
+.Btn-back:hover{
+    transform: scale(1.2, 1.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.Btn-back:active{
+    transform: scale(1.2, 1.2);
 }

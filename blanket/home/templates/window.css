@@ -22,7 +22,11 @@ body{
 
 body.fade {
     opacity: 0;
-  }
+}
+
+button:hover{
+    cursor : pointer;
+}
 
 .appBody{
     width: 390px;
@@ -64,13 +68,13 @@ body.fade {
     font-weight: 400;
 }
 
-.body{
+.contentBody{
     width: 100%;
     height: 55%;
     display: flex;
 }
 
-.windowBtn{
+.Btn-mission{
     position: relative;
     top: 33px;
     left: 60px;
@@ -82,26 +86,24 @@ body.fade {
     border: none;
 }
 
-.windowBtn:hover{
-    cursor : pointer;
+.Btn-mission:hover{
+    box-shadow: 0px 0px 100px 10px rgb(232, 226, 168);
+    transition: 0.2s ease-in;
 }
-
 .footer{
     width: 100%;
     height: 25%;
-    display: flex;
-
-    flex-direction: row-reverse;
-    justify-content: last baseline;
-    align-items: center;
 }
 
 .Btn-bar{
+    position: relative;
+    top: 70px;
+    left: 248px;
+
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
 
-    width: 140px;
+    width: 142px;
     height: 40px;
     padding: 10px;
     border-radius: 20px 0px 0px 20px;
@@ -125,4 +127,29 @@ body.fade {
 
 .Btn-setting{
     background-image: url("../images/setting.png");
+}
+
+.Btn-back{
+    width: 45px;
+    height: 45px;
+
+    position: relative;
+    top: 98px;
+    left: 173px;
+
+    background-image: url("../images/back-button.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    padding: 6px;
+    border: none;
+}
+
+.Btn-back:hover{
+    transform: scale(1.2, 1.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.Btn-back:active{
+    transform: scale(1.2, 1.2);
 }
