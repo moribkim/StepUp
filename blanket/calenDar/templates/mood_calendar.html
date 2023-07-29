@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+</head>
+<body>
+    <h1>{{ year }}년 {{ month }}월</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in calendar %}
+            <tr>
+                {% for day in week %}
+                <td {% if day and day != 'None' and day != '' %}style="color: black;"{% else %}style="color: lightgray;"{% endif %}>
+                    {% if day %}
+                        <a href="{% url 'mood_detail' year=year month=month day=day %}">{{ day }}</a>
+                        <br>
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+
+            {% for week_color in calendar_color %}
+            <tr>
+                {% for mood_colors in week_color %}
+                <td>
+                    {% if mood_colors %}
+                        {% for color in mood_colors %}
+                            {% if forloop.counter <= 4 %}
+                                <span style="background-color: {{ color.code|add:'' }}; display: inline-block; width: 20px; height: 20px;"></span>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
+                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
+                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
+                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
