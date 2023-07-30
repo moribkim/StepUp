@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', () => {
+    window.setTimeout(() => {
+        document.body.classList.remove('fade');
+    }, 500);
+});
+
 const appBody = document.getElementsByClassName("appBody")[0];
 const winBtn = document.getElementsByClassName("windowBtn")[0];
 const homeImg = appBody.style.backgroundImage;
@@ -16,7 +22,7 @@ winBtn.addEventListener("click", () => {
         homeState = "bright";
 
         setTimeout(() => {
-            location.href = 'window.html';
+            location.href = '../../mission/templates/mission.html';
         }, 1000);
     }
 });

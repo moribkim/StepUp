@@ -127,6 +127,7 @@ button:hover{
 
 .Btn-setting{
     background-image: url("../images/setting.png");
+    background-color: transparent;
 }
 
 .Btn-back{
