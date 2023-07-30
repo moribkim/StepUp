@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Missions</title>
+</head>
+<body>
+    <h1>Main Mission</h1>
+    <p>{{ main_mission.description }}</p>
+    {% if main_mission.completed %}
+    <p>오늘의 메인 미션 성공!</p>
+    <h2>Sub Missions</h2>
+    <ul>
+        {% for sub_mission in sub_missions %}
+        <li>
+            <p>{{ sub_mission.description }}</p>
+            {% if sub_mission.completed %}
+            <p>미션 성공!</p>
+            {% else %}
+            <p>미완료</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

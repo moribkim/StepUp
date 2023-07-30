@@ -17,13 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from account import views as account
+from mission import views as mission
 from record.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('record/', record, name="record"),
-    path('record_submit/', record_submit, name="record_submit")
-    #path('login/',include('account.urls')),
+    path('record_submit/', record_submit, name="record_submit"),
+    path('mission/',include('mission.urls')),
     path('account/',include('account.urls')),
 ]

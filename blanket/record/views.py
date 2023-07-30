@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import Mood, Color, Word
-
+#from mission.models import Mission
 # Create your views here.
 
 def index(request):
@@ -9,6 +10,7 @@ def index(request):
 def record(request):
     return render(request, 'record.html') 
 
+@login_required
 def record_submit(request):
     if request.method == 'POST':
         selected_colors = request.POST.get('selected_colors')
@@ -19,7 +21,8 @@ def record_submit(request):
         selected_words = request.POST.get('selected_words')
         selected_words_list = selected_words.split(',') if selected_words else []
         
-        
+        #main_mission = Mission.objects.filter(mission_type='main').first()
+
         mood = Mood.objects.create(user=request.user, text=text)
 
         for color_code in selected_colors_list:

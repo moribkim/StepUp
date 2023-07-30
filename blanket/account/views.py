@@ -9,11 +9,10 @@ def home(request):
 
 
 def signup(request):
-    #TODO: id 같은 경우 처리하기.
     if request.method == 'POST':
         if request.POST['password'] == request.POST['confirm']: 
             username=request.POST.get('username')
-            if User.objects.filter(username=username).exists(): 
+            if User.objects.filter(username=username).exists(): #TODO: id 같은 경우 처리하기.
                 return render(request, 'alert.html')
             password=request.POST.get('password')
             last_name=request.POST.get('last_name')
