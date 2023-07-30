@@ -1,0 +1,150 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    background-color: #e0dcc1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+        
+    opacity: 1;
+    transition-duration: 1s;
+    transition-property: opacity;
+}
+
+body.fade {
+    opacity: 0;
+}
+
+.appBody{
+    width: 390px;
+    height: 844px;
+    background-image: url("../images/home-dark-close.png");
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    transition: all 0.6s ease-in-out;
+}
+
+.header{
+    width: 100%;
+    height: 25%;
+}
+
+.header-box{
+    position: relative;
+    top: 85px;
+    left: 105px;
+    width: 180px;
+    height: 40px;
+    padding: 10px;
+    opacity: 80%;
+    border-radius: 10px;
+    background: rgba(239, 234, 202, 0.70);
+}
+
+.writing-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.writing{
+    color: #807439;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.homeBody{
+    width: 100%;
+    height: 55%;
+    display: flex;
+}
+
+.homeBody button:hover{
+    cursor: pointer;
+}
+
+.windowBtn{
+    position: relative;
+    top: 135px;
+    left: 70px;
+    width: 100px;
+    height: 50px;
+    opacity: 0.05;
+    
+    background-color: transparent;
+    border-radius: 40%;
+    border: none;
+    transform: rotate(-35deg);
+}
+
+.windowBtn:hover{
+    box-shadow: 0px 0px 50px 10px rgb(255, 255, 255);
+    transition: 0.2s ease-in;
+}
+
+.deskBtn{
+    position: relative;
+    top: 190px;
+    left: 170px;
+    width: 90px;
+    height: 130px;
+    flex-shrink: 0;
+    
+    background-color: transparent;
+    border-radius: 40%;
+    border: none;
+}
+
+.footer{
+    width: 100%;
+    height: 25%;
+}
+
+.Btn-bar{
+    position: relative;
+    top: 70px;
+    left: 248px;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 142px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 20px 0px 0px 20px;
+    background: rgba(255, 255, 255, 0.50);
+}
+
+.Btn-bar button{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: none;
+}
+
+.Btn-user{
+    background-image: url("../images/Ellipse\ 24.png");
+}
+
+.Btn-help{
+    background-image: url("../images/question-mark.png");
+}
+
+.Btn-setting{
+    background-image: url("../images/setting.png");
+    background-color: transparent;
+}
