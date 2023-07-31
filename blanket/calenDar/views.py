@@ -3,6 +3,7 @@ from record.models import *
 import datetime
 from django.utils import timezone
 from calendar import monthrange
+from mission.models import *
 
 # Create your views here.
 
@@ -69,7 +70,10 @@ def mood_detail(request, year, month, day):
         mood = Mood.objects.get(created_at__date=date)
         colors = mood.color_set.all()
         words = mood.word_set.all()
-        return render(request, 'mood_detail.html', {'mood': mood, 'colors': colors, 'words': words})
+        missions = []
+        if mood.missions.exists():
+            missions = mood.missions.all()
+        return render(request, 'mood_detail.html', {'mood': mood, 'colors': colors, 'words': words, 'missions': missions})
     except:
         return render(request, 'mood_not_exist.html')
 

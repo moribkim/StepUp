@@ -18,6 +18,14 @@
             {% endif %}
         {% endfor %}
     </ul>
+    {% if missions %}
+        <h2>Missions:</h2>
+        <ul>
+            {% for mission in missions %}
+                <li>{{ mission.mission.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <h2>Text:</h2>
     <p>{{ mood.text }}</p>
     <h2>Words:</h2>
