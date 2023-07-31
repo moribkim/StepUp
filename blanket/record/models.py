@@ -10,8 +10,8 @@ class Mood(models.Model):
     # colors = models.ManyToManyField('Color')
     text = models.TextField(null=True)
     # selected_words = models.ManyToManyField('Word')
-    created_at = models.DateTimeField(default=timezone.now)
-    missions = models.ManyToManyField(UserMission, blank=True)
+    created_at = models.DateTimeField(default=timezone.now().date())
+    missions = models.ManyToManyField(UserMission, blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.username} - {self.created_at}'

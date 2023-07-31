@@ -18,7 +18,7 @@ class Mission(models.Model):
 class UserMission(models.Model):
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.now().date())
     completed = models.BooleanField(default=False)
     
     def __str__(self):
