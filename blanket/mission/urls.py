@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns=[
-    path('', mission_view, name="mission_view"),
+    path('', mission_list, name="mission_list"),
+    path('complete_mission/<int:mission_id>', complete_mission, name='complete_mission'),
 ]

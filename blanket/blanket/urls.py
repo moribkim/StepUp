@@ -20,6 +20,7 @@ from account import views as account
 from mission import views as mission
 from record.views import *
 from calenDar.views import *
+from home import views as home
 
 urlpatterns = [
     path('admin/', admin.site.urls),

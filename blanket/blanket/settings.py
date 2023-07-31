@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mission',
     'calenDar',
     'record',
+    'home',
 ]
 
 MIDDLEWARE = [
