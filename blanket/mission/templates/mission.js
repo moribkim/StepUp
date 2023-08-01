@@ -1,3 +1,6 @@
+//
+// Window home page
+//
 const modal = document.querySelector('.mission-popup');
 const modalSwitch = document.querySelector('.popup-switch');
 const windowBtn = document.querySelector('.Btn-window');
