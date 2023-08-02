@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="title">감정 일기</div>
-
+        
         <form method="post" id="mood-form" action="{% url 'record_submit' %}">
             {% csrf_token %}
             <div id="date-display"></div>
@@ -17,7 +17,7 @@
             <div class="horizontal-container">
                 <div class="left">
                     <div class="horizontal-container">
-                        <input type="color" id="colorpicker" value="#0000ff">
+                        <input type="color" id="colorpicker" value="#707f50">
                         <button id="ok-button">선택</button>
                     </div>
                 </div>
@@ -331,7 +331,7 @@
         border: 0.5px solid #7D8D4899;
         border-radius: 15px;
         font-size: 10px;
-        padding: 5px 10px;
+        border-radius: 80% 0% 0% 80%;
     }
         #ok-button:hover, .more-options-button:hover {
             cursor: pointer;
