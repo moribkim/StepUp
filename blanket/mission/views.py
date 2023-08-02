@@ -48,3 +48,6 @@ def mission_list(request):
     main_mission = UserMission.objects.filter(user=user, date=today, mission__type='main').first()
     sub_missions = UserMission.objects.filter(user=user, date=today, mission__type='sub')
     return render(request, 'mission_list.html', {'main_mission': main_mission, 'sub_missions': sub_missions})
+
+def quote(request):
+    return render(request, 'quote.html')

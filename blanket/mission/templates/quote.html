@@ -1,0 +1,75 @@
+<div id="quote-container">
+    <p id="quote"></p>
+</div>
+
+<button id="change-quote-button">Change quote</button>
+
+<script>
+    const morningQuotes = [
+        "새로운 하루가 시작되었다. 오늘은 무엇이든 가능하다.",
+        "오늘은 새로운 기회로, 새로운 가능성을 만들어갈 수 있는 날이다.",
+        "아침 햇살이 당신의 미소처럼 따뜻하게 비추길 바란다.",
+        "아침 햇살이 당신을 감싸면서 새로운 시작을 기대해보아라. 당신은 놀라울 정도로 멋진 사람이다.",
+        "일어나는 순간부터 당신은 세상을 밝게 비추는 별이다. 오늘도 빛나세요.",
+        "아침은 자신을 찾고, 목표를 세우는 좋은 시간입니다. 당신이 원하는 미래를 위해 시작하세요.",
+        "새로운 하루에 당신의 미소가 퍼지면, 주변은 따뜻해지고 행복이 넘쳐날 것이다.",
+        "아침 해가 비추는 순간, 당신의 열정과 희망이 빛나게 된다."
+    ];
+
+    const afternoonQuotes = [
+        "지금은 정오의 태양처럼 밝고 활기찬 시간입니다. 당신의 에너지를 마음껏 발산해보세요.",
+        "정오에는 햇살이 가장 밝게 빛나는 시간이다. 당신도 그렇게 밝게 빛나는 사람이다.",
+
+    ];
+
+    const nightQuotes = [
+        "내일은 내일의 태양이 뜬다.",
+        "오늘 하루도 고생 많았다. 잠시 휴식을 취하고 내일을 준비하는 시간을 가져라.",
+        "하루가 저물어가고 있다. 지금까지 힘들게 버텨온 당신, 정말 대단하다."
+    ];
+
+    const anytimeQuotes = [
+        "삶이 있는 한 희망은 있다.",
+        "언제나 현재에 집중할수 있다면 행복할것이다.",
+        "겨울이 오면 봄이 멀지 않으리.",
+        "반드시 좋은 날은 찾아와. 포기하지만 않는다면.",
+        "걱정하지 마. 잘하고 있어.",
+        "수고했다 오늘도.",
+        "매일 매일 좋을 순 없으나 잘 찾아보면 매일매일 좋은 일은 있더라.",
+        "영원한 것은 없다, 우리가 겪는 어려움도.",
+        "당신은 특별하고 독특한 존재이다. 당신의 존재 자체가 가치있다.",
+        "성공은 힘들게 얻어지지만 그 보상은 더욱 크고 아름답다.",
+        "매일 작은 성취를 기록해보아라. 그 작은 성공들이 모여 큰 성공으로 이어질 것이다."
+    ];
+
+    const quoteContainer = document.getElementById('quote');
+    const changeQuoteButton = document.getElementById('change-quote-button');
+
+    changeQuoteButton.addEventListener('click', changeQuote);
+
+    let currentQuoteIndex = -1; // Start with an invalid index
+
+    function changeQuote() {
+        const currentHour = new Date().getHours();
+        let quotes;
+        let randomIndex;
+
+        if (currentHour >= 6 && currentHour < 10) {
+            quotes = morningQuotes.concat(anytimeQuotes);
+        } else if (currentHour >= 12 && currentHour < 15) {
+            quotes = afternoonQuotes.concat(anytimeQuotes);
+        } else if (currentHour >= 17 && currentHour < 22) {
+            quotes = nightQuotes.concat(anytimeQuotes);
+        } else {
+            quotes = anytimeQuotes;
+        }
+                
+        do {
+            randomIndex = Math.floor(Math.random() * quotes.length);
+        } while (randomIndex === currentQuoteIndex);
+        
+        currentQuoteIndex = randomIndex;
+        const quoteElement = document.getElementById('quote');
+        quoteElement.textContent = quotes[currentQuoteIndex];
+    }
+</script>
