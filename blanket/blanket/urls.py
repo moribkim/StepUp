@@ -32,5 +32,5 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('mood_calendar/', mood_calendar, name="mood_calendar"),
     path('mood_calendar/<int:year>-<int:month>-<int:day>/', mood_detail, name='mood_detail'),
-    path('quote/', quote, name='quote')
+    path('quote/', home.quote, name='quote')
 ]
