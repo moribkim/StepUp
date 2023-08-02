@@ -51,9 +51,7 @@ body.fade {
     opacity: 80%;
     border-radius: 10px;
     background: rgba(239, 234, 202, 0.70);
-}
 
-.writing-box{
     display: flex;
     justify-content: center;
     align-items: center;

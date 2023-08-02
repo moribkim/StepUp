@@ -53,10 +53,8 @@ button:hover{
     padding: 10px;
     opacity: 80%;
     border-radius: 10px;
-    background: rgba(239, 234, 202, 0.70);
-}
+    background: #C6C993;
 
-.writing-box{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,6 +179,10 @@ button:hover{
     transition: top 0.8s cubic-bezier(0.2, .5, .5, 1);
 }
 
+.mission-popup button{
+    transition: all 0.4s ease-in-out;
+}
+
 .mission-popup button:hover{
     transform: scale(0.95, 0.95);
     transition: all 0.2s ease-in-out;
@@ -212,7 +214,7 @@ button:hover{
 
 .popup-header-box{
     position: absolute;
-    top: 70px;
+    top: 65px;
 
     width: 208px;
     height: 41px;
@@ -237,13 +239,15 @@ button:hover{
     width: 100%;
     height: 77%;
     padding: 10px;
-    /* background-color: green; */
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
 
+.popup-body p{
+    color: #807439;
 }
 
 .popup-body button{
@@ -270,7 +274,6 @@ button:hover{
     width: 100%;
     height: 67px;
 
-    color: #807439;
     text-align: center;
     font-family: Inter;
     font-size: 20px;
@@ -287,7 +290,6 @@ button:hover{
 .main-content{
     width: 100%;
     height: 146px;
-    color: #807439;
     font-family: Inter;
     font-size: 15px;
 }
@@ -302,12 +304,27 @@ button:hover{
     font-weight: 400;
 }
 
-.Btn-diary, .serve-mis{
+.Btn-record, .serve-mission{
     width: 242px;
     height: 66px;
     opacity: 0.5;
     background-color: #C6C993;
+}
 
+.serve-mission{
+    background-image: url(../images/locked-image.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.serve-content{
+    opacity: 0;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+
+    transition: all 0.7s ease-in-out;
 }
 
 .popup-footer{
