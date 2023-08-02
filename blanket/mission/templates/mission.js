@@ -100,11 +100,11 @@ mainBtn.addEventListener('click', () => {
         mainComplete = true;
         missionComplete();
     }
+});
 
 //Serve mission complete and change color
 for(let i=0; i < serNum; i++){
     serBtn[i].addEventListener('click', () => {
         serBtn[i].style.backgroundColor = "#FFF7D9";
-    });   
+    });
 };
-});
