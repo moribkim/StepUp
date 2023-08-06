@@ -85,3 +85,14 @@ def get_mood_colors(date):
         return mood_colors
     else:
         return []
+    
+def record_edit(request, id):
+    edit_mood = Mood.objects.get(id=id)
+    colors = edit_mood.color_set.all()
+    words = edit_mood.word_set.all()
+
+    # year = edit_mood.created_at.year
+    # month = edit_mood.created_at.month
+    # day = edit_mood.created_at.day
+    
+    return render(request, 'record_edit.html', {'mood':edit_mood, 'colors': colors, 'words': words})
