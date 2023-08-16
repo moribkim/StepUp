@@ -16,23 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from account import views as account
-from mission import views as mission
-from record.views import *
-from calenDar.views import *
-from home import views as home
+#from account import views as account
+#from mission import views as mission
+#from record import views as record
+#from calenDar import views as calenDar
+#from record.views import *
+#from calenDar.views import *
+#from home import views as home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name="index"),
-    path('record/', record, name="record"),
-    path('record_submit/', record_submit, name="record_submit"),
+    path('', include('home.urls')),
+    path('record/', include('record.urls')),
     path('mission/',include('mission.urls')),
-    #path('login/',include('account.urls')),
-    path('account/',include('account.urls')),
-    path('mood_calendar/', mood_calendar, name="mood_calendar"),
-    path('mood_calendar/<int:year>-<int:month>-<int:day>/', mood_detail, name='mood_detail'),
-    path('record_edit/<int:id>/', record_edit, name="record_edit"),
-    path('record_update/<int:id>/', record_update, name="record_update"),
-    path('quote/', home.quote, name='quote')
+    #@login_required에서 로그인 안되어있는 경우, accounts/login으로 이동하므로 아래 path 이름 변경하지 말기
+    path('accounts/',include('account.urls')),
+    path('calendar/', include('calenDar.urls')),
 ]

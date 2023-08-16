@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission</title>
-    <link rel="stylesheet" href="mission.css">
+    <link rel="stylesheet" href="/static/css/mission.css">
 </head>
 <body class="fade">
 
@@ -55,6 +56,7 @@
                         <!-- 메인 미션에 대한 활동 설명 -->
                         <p class="mission-explanation">베개와 이불을 제자리로 정돈하기</p>
                     </div>
+                    <button class="main-shuffle"></button>
                 </button>
                 <!-- 감정기록 버튼 클릭 시 이동-->
                 <button class="Btn-record" disabled>
@@ -67,14 +69,17 @@
                 <button class="serve-mission" disabled>
                     <p class="serve-content">서브미션 2</p>
                 </button>
-                <button class="serve-mission" disabled>
-                    <p class="serve-content">서브미션 3</p>
-                </button>
+                <div class="serve-wrapper">
+                    <button class="serve-mission" disabled>
+                        <p class="serve-content">서브미션 3</p>
+                    </button>
+                    <button class="serve-shuffle"></button>
+                </div>
             </div>
             <div class="popup-footer">
             </div>
         </div>
     </div>
 </body>
-<script src="mission.js"></script>
+<script src="/static/js/mission.js"></script>
 </html>

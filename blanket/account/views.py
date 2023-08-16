@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import login, authenticate
 
-def home(request):
-    return render(request, 'home.html')
+def account_check(request):
+    return render(request, 'account_check.html')
 
 
 def signup(request):
