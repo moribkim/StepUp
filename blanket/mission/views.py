@@ -57,10 +57,10 @@ def change_mission(request, mission_id):
     user_mission = get_object_or_404(UserMission, id=mission_id)
 
     if user_mission.mission.type == 'main':
-        missions = Mission.objects.filter(type='main')
+        missions = Mission.objects.filter(type='main').exclude(id=user_mission.mission.id)
         mission_changed = random.choice(missions)
     else:
-        missions = Mission.objects.filter(type='sub')
+        missions = Mission.objects.filter(type='sub').exclude(id=user_mission.mission.id)
         mission_changed = random.choice(missions)
     
     user_mission.mission = mission_changed
