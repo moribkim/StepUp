@@ -5,10 +5,10 @@ from .views import *
 
 
 urlpatterns=[
-    path('', home, name='home'),
+    path('', account_check, name='account_check'),
+    #@login_required에서 로그인 안되어있는 경우, accounts/login으로 이동하므로 아래 path 이름 변경하지 말기
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('signup/', signup, name='signup'),
-    path('alret')
 ]
 

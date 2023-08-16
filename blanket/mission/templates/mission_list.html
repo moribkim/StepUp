@@ -1,33 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Missions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission</title>
+    <link rel="stylesheet" href="mission.css">
 </head>
-<body>
-    오늘의 미션(메인 미션 완료시 서브 미션 3개를 더 드립니다.)
-    <h1>Main Mission</h1>
-    <p>{{ main_mission.mission.name }}</p>
-    {% if main_mission.completed %}
-    <p>오늘의 메인 미션 성공!</p>
-    {% else %}
-      <a href="{% url 'complete_mission' main_mission.id %}">미션 완료!</a>
-    {% endif %}
+<body class="fade">
 
-    {% if main_mission.completed %}
-        <h3>Sub Missions</h3>
-        <ul>
-          {% for sub_mission in sub_missions %}
-            <li>
-              {{ sub_mission.mission.name }}
-              {% if sub_mission.completed %}
-                서브 미션 성공!
-              {% else %}
-                <a href="{% url 'complete_mission' sub_mission.id %}">미션 완료!</a>
-              {% endif %}
-            </li>
-          {% endfor %}
-    </ul>
-    {% endif %}
+    <!-- 창문 배경 -->
+    <div class="appBody">
+        <div class="header">
+            <div class="header-box">
+                <span class="writing">창문을 눌러보세요</span>
+            </div>
+        </div>
+        <div class="contentBody">
+            <!-- 창문 클릭 시 미션 팝업 페이지 올라옴 -->
+            <button class="Btn-window"></button>
+        </div>
+        <div class="footer">
+            <!-- 기본 옵션 버튼 -->
+            <div class="Btn-bar">
+                <button class="Btn-user"></button>
+                <button class="Btn-help"></button>
+                <button class="Btn-setting"></button>
+            </div>
+            <!-- 뒤로 가기 버튼 -->
+            <button class="Btn-back" onclick="location.href= '../../home/templates/home.html'"></button>
+        </div>
+        
 
+        <!-- 미션 페이지 -->
+        <div class="mission-popup">
+            <div class="popup-header">
+                <button class="popup-switch">
+                    <hr class="popup-switch-line">
+                </button>
+                <div class="popup-header-box">
+                    <span class="header-writing">오늘의 미션</span>
+                </div>
+            </div>
+            <div class="popup-body">
+                <!-- 메인 미션 버튼 클릭 시 미션 완료됨 -->
+                <button class="main-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';">
+                    <p class="main-title">{{ main_mission.mission.name }}</p>
+                    <hr class="main-line">
+                    <div class="main-content">
+                        <div class="mission-title">
+                            <p class="mission-fixed">오늘 하루의 첫 미션</p>
+                            <p class="mission">'{{ main_mission.mission.name }}'</p>
+                        </div>
+                        <!-- 메인 미션에 대한 활동 설명 -->
+                        <p class="mission-explanation">{{ main_mission.mission.description }}</p>
+                    </div>
+                </button>
+                <!-- 감정기록 버튼 클릭 시 이동-->
+                <button class="Btn-record" disabled>
+                    <p>미션 후 감정 기록하기</p>
+                </button>
+
+                <!-- 서브미션 버튼 -->
+                {% for sub_mission in sub_missions %}
+                <button class="serve-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';" disabled>
+                    <p class="serve-content">{{ sub_mission.mission.name }}</p>
+                </button>
+                {% endfor %}
+
+            </div>
+            <div class="popup-footer">
+            </div>
+        </div>
+    </div>
 </body>
+<script src="mission.js"></script>
 </html>

@@ -14,13 +14,21 @@
             </div>    
         </div>
         <div class="homeBody">
-            <button class="windowBtn"></button>
-            <button class="deskBtn" onclick="location.href='desk.html'"></button>
+            <button class="windowBtn" onclick="location.href='{% url 'mission_list' %}';">
+                <!--누르면 홈 화면이 밝아짐.-->
+                <!--미션으로 이동-->
+            </button>
+            <button class="deskBtn" onclick="location.href='{% url 'desk' %}';">
+                <!--desk.html에서 캘린더나 다이어리 누르면 해당 페이지로 이동-->
+            </button>
         </div>
         <div class="footer">
             <div class="Btn-bar">
+                <!--마이페이지-아직 없음-->
                 <button class="Btn-user"></button>
+                <!--도움말 팝업-아직 없음-->
                 <button class="Btn-help"></button>
+                <!--환경 설정-필요시-->
                 <button class="Btn-setting"></button>
             </div>
         </div>
