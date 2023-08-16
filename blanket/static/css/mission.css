@@ -343,6 +343,8 @@ button:hover{
 }
 
 .serve-shuffle{
+    display: none;
+    
     position: absolute;
     top: 50px;
     left: 230px;

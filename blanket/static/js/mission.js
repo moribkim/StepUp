@@ -53,8 +53,7 @@ let mainComplete = false;
 
 const missionComplete = () => {
     mainBtn.style.backgroundColor = "#FFF7D9";
-    misFixed.innerHTML = "메인 미션 클리어!";
-    misExplain.innerHTML = "침대를 시작으로 나의 공간을 가꿔 나가 볼까요?";
+    misFixed.innerHTML = "{{ main_mission.mission.description }}";
 
     for(let i=0; i < serNum; i++){
         serBtn[i].disabled = false;
