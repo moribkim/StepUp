@@ -27,7 +27,7 @@ body.fade {
 .appBody{
     width: 390px;
     height: 844px;
-    background-image: url("../images/home-dark-close.png");
+    background-image: url("../home-dark-close.png");
 
     display: flex;
     flex-direction: column;
@@ -135,14 +135,14 @@ body.fade {
 }
 
 .Btn-user{
-    background-image: url("../images/Ellipse\ 24.png");
+    background-image: url("../Ellipse\ 24.png");
 }
 
 .Btn-help{
-    background-image: url("../images/question-mark.png");
+    background-image: url("../question-mark.png");
 }
 
 .Btn-setting{
-    background-image: url("../images/setting.png");
+    background-image: url("../setting.png");
     background-color: transparent;
 }

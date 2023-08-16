@@ -9,7 +9,7 @@ const winBtn = document.getElementsByClassName("windowBtn")[0];
 const homeImg = appBody.style.backgroundImage;
 
 let homeState;
-if(homeImg === "url(../images/home-bright-open.png)"){
+if(homeImg === "url(../home-bright-open.png)"){
     homeState = "bright";
 }
 else{
@@ -18,11 +18,11 @@ else{
 
 winBtn.addEventListener("click", () => {
     if(homeState === "dark"){
-        appBody.style.backgroundImage = "url(../images/home-bright-open.png)"
+        appBody.style.backgroundImage = "url(../home-bright-open.png)"
         homeState = "bright";
 
         setTimeout(() => {
-            location.href = '../../mission/templates/mission.html';
+            location.href = '/static/mission.html';
         }, 1000);
     }
 });
