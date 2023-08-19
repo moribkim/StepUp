@@ -13,12 +13,19 @@ def index(request):
 
 @login_required
 def record(request):
+    today = timezone.now().date()
+    try:
+        edit_record = Mood.objects.get(created_at__date=today)
+        colors = edit_record.color_set.all()
+        words = edit_record.word_set.all()
+        return render(request, 'record_edit.html', {'mood':edit_record, 'colors': colors, 'words': words})
     #user = request.user
     #today = timezone.now().date()
     #if not request.user.is_authenticated:
     #    return redirect(login)
-    return render(request, 'record.html') 
-
+    except:
+        return render(request, 'record.html') 
+ 
 @login_required
 def record_submit(request):
     if request.method == 'POST':
