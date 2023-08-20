@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Mission, UserMission
+from django.http import JsonResponse
 
 import random
 
@@ -38,6 +39,19 @@ def complete_mission(request, mission_id):
         user_mission.completed = True
     user_mission.save()
     #return redirect('mission_list')
+
+@login_required
+def complete_mission_js(request, mission_id):
+    if request.method == "POST":
+        user_mission = get_object_or_404(UserMission, id=mission_id)
+        if user_mission.completed == True:
+            user_mission.completed = False
+        else:
+            user_mission.completed = True 
+        user_mission.save()
+        return JsonResponse({'completed': user_mission.completed}, status=200)
+    return JsonResponse({'error': 'Invalid method'}, status=400)
+
 
 @login_required
 def mission_list(request):
