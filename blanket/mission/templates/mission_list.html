@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission</title>
-    <link rel="stylesheet" href="mission.css">
+    <link rel="stylesheet" href="/static/css/mission.css">
 </head>
 <body class="fade">
 
@@ -27,7 +27,7 @@
                 <button class="Btn-setting"></button>
             </div>
             <!-- 뒤로 가기 버튼 -->
-            <button class="Btn-back" onclick="location.href= '../../home/templates/home.html'"></button>
+            <button class="Btn-back" onclick="location.href= '../'"></button>
         </div>
         
 
@@ -54,6 +54,7 @@
                         <!-- 메인 미션에 대한 활동 설명 -->
                         <p class="mission-explanation">{{ main_mission.mission.description }}</p>
                     </div>
+                    <button class="main-shuffle"></button>
                 </button>
                 <!-- 감정기록 버튼 클릭 시 이동-->
                 <button class="Btn-record" disabled>
@@ -62,9 +63,12 @@
 
                 <!-- 서브미션 버튼 -->
                 {% for sub_mission in sub_missions %}
-                <button class="serve-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';" disabled>
-                    <p class="serve-content">{{ sub_mission.mission.name }}</p>
-                </button>
+                <div class="serve-wrapper">
+                    <button class="serve-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';" disabled>
+                        <p class="serve-content">{{ sub_mission.mission.name }}</p>
+                    </button>
+                    <button class="serve-shuffle"></button>
+                </div>
                 {% endfor %}
 
             </div>
@@ -73,5 +77,5 @@
         </div>
     </div>
 </body>
-<script src="mission.js"></script>
+<script src="/static/js/mission.js"></script>
 </html>

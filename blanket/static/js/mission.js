@@ -1,4 +1,14 @@
 //
+// Page convertion animation
+//
+document.addEventListener('DOMContentLoaded', () => {
+    window.setTimeout(() => {
+        document.body.classList.remove('fade');
+    }, );
+});
+
+
+//
 // Window home page
 //
 const modal = document.querySelector('.mission-popup');
@@ -36,7 +46,7 @@ modalSwitch.addEventListener('click', () => {
 });
 
 //
-// Mission page
+// Mission Popup page
 //
 const mainBtn = document.querySelector('.main-mission');
 const misFixed = document.querySelector('.mission-fixed');
@@ -45,6 +55,7 @@ const misExplain = document.querySelector('.mission-explanation');
 const serNum = 3;
 const serBtn = document.querySelectorAll('.serve-mission');
 const serMis = document.querySelectorAll('.serve-content');
+const serShuf = documnet.querySelectorAll('.serve-shuffle')
 const record = document.querySelector('.Btn-record');
 
 //Main Mission complete
@@ -53,14 +64,15 @@ let mainComplete = false;
 
 const missionComplete = () => {
     mainBtn.style.backgroundColor = "#FFF7D9";
-    misFixed.innerHTML = "메인 미션 클리어!";
-    misExplain.innerHTML = "침대를 시작으로 나의 공간을 가꿔 나가 볼까요?";
+    misFixed.innerHTML = "미션 완료!";
+    misExplain = "";
 
     for(let i=0; i < serNum; i++){
         serBtn[i].disabled = false;
         serBtn[i].style.backgroundImage = "none";
         serBtn[i].style.opacity = 0.9;
         serMis[i].style.opacity = 1;
+        serShuf[i].style.display = 'block';
     };
     //record open
     record.disabled = false;
@@ -79,6 +91,7 @@ const missionInComplete = () => {
         serBtn[i].disabled = true;
         serBtn[i].style.opacity = 0.5;
         serMis[i].style.opacity = 0;
+        serShuf[i].style.display = 'none';
         setTimeout(()=>{
             serBtn[i].style.backgroundImage = "url(../images/locked-image.png)";
         }, 600);
