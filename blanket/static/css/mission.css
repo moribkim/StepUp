@@ -19,10 +19,10 @@ body{
     transition-duration: 1s;
     transition-property: opacity;
 }
-/* 
+
 body.fade {
     opacity: 0;
-} */
+}
 
 button:hover{
     cursor : pointer;
@@ -266,6 +266,7 @@ button:hover{
 .main-mission{
     width: 242px;
     height: 213px;
+    padding: 5px;
     opacity: 0.9;
     background-color: #C6C993;
 }
@@ -344,7 +345,6 @@ button:hover{
 
 .serve-shuffle{
     display: none;
-    
     position: absolute;
     top: 50px;
     left: 230px;
