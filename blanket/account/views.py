@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.contrib import auth
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 def account_check(request):
     return render(request, 'account_check.html')
@@ -43,3 +44,10 @@ def logout(request):
         auth.logout(request)
         return redirect('/')
     return render(request, 'login.html')
+
+@login_required
+def profile(request):
+    user=request.user
+    userId = user.username
+    userName =user.last_name
+    return render(request, 'profile.html', {'userId': userId, 'userName': userName})
