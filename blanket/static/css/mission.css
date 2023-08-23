@@ -6,7 +6,7 @@
 body{
     width: 100%;
     height: 100vh;
-    padding: 20px;
+
     background-color: #e0dcc1;
 
     display: flex;
@@ -100,7 +100,7 @@ button:hover{
 
 .Btn-bar{
     position: relative;
-    top: 73px;
+    top: 70px;
     left: 248px;
 
     display: flex;
@@ -138,7 +138,7 @@ button:hover{
     height: 45px;
 
     position: relative;
-    top: 98px;
+    top: 93px;
     left: 173px;
 
     background-image: url("../back-button.png");
@@ -159,6 +159,31 @@ button:hover{
 }
 
 
+.Help{
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    width: 390px;
+    height: 844px;
+
+    background-color: #F0EDD3;
+    opacity: 0.7;
+    transition: all 0.5s ease-in-out;
+}
+
+.HelpClose{
+    width: 35px;
+    height: 35px;
+
+    position: relative;
+    top: -834px;
+    left: 342px;
+
+    background-image: url(/static/CloseBtn.png);
+    background-color: #e3ddc1;
+    border: none;
+}
+
 
 .mission-popup {
     position: absolute;
@@ -176,7 +201,7 @@ button:hover{
     flex-direction: column;
     justify-content: center;
 
-    transition: top 0.8s cubic-bezier(0.2, .5, .5, 1);
+    transition: top 1s cubic-bezier(0.2, .5, .5, 1);
 }
 
 .mission-popup button{
@@ -359,5 +384,20 @@ button:hover{
 .popup-footer{
     width:100%;
     height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     /* background-color: aqua; */
+}
+
+.ClosePopup{
+    width: 45px;
+    height: 45px;
+
+    background-image: url("../back-button.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    padding: 6px;
+    border: none;
 }

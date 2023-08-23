@@ -3,10 +3,45 @@
     margin: 0px;
 }
 
+@media screen and (max-width: 576px){
+    .appBody{
+        width: 390px;
+        height: 844px;
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .appBody{
+        width: 390px;
+        height: 844px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .appBody{
+        width: 390px;
+        height: 844px;
+    }
+}
+/*너비가 993px - 1200px의 style*/
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .appBody{
+        width: 780px;
+        height: 1688px;
+    }
+}
+/*너비가 최소 1201px부터의 style*/
+@media screen and (min-width: 1201px) {
+    .appBody{
+        width: 390px;
+        height: 844px;
+    }
+}
+
 body{
     width: 100%;
     height: 100vh;
-    padding: 20px;
+
     background-color: #e0dcc1;
 
     display: flex;
@@ -24,6 +59,10 @@ body.fade {
     opacity: 0;
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 .appBody{
     width: 390px;
     height: 844px;
@@ -39,12 +78,12 @@ body.fade {
 .header{
     width: 100%;
     height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-box{
-    position: relative;
-    top: 85px;
-    left: 105px;
     width: 180px;
     height: 40px;
     padding: 10px;
@@ -69,10 +108,6 @@ body.fade {
     width: 100%;
     height: 55%;
     display: flex;
-}
-
-.homeBody button:hover{
-    cursor: pointer;
 }
 
 .windowBtn{
@@ -145,4 +180,29 @@ body.fade {
 .Btn-setting{
     background-image: url("../setting.png");
     background-color: transparent;
+}
+
+.Help{
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    width: 390px;
+    height: 844px;
+
+    background-color: #F0EDD3;
+    opacity: 0.7;
+    transition: all 0.5s ease-in-out;
+}
+
+.HelpClose{
+    width: 35px;
+    height: 35px;
+
+    position: relative;
+    top: -834px;
+    left: 342px;
+
+    background-image: url(/static/CloseBtn.png);
+    background-color: #e3ddc1;
+    border: none;
 }

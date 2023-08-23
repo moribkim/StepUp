@@ -30,11 +30,15 @@
             <button class="Btn-back" onclick="location.href= '../'"></button>
         </div>
         
+        <div class="Help">
+            <img class="Help-Img" src="/static/Mission-Help.png">
+            <button class="HelpClose"></button>
+        </div>
 
         <!-- 미션 페이지 -->
         <div class="mission-popup">
             <div class="popup-header">
-                <button class="popup-switch">
+                <button class="popup-switch" disabled>
                     <hr class="popup-switch-line">
                 </button>
                 <div class="popup-header-box">
@@ -73,9 +77,59 @@
 
             </div>
             <div class="popup-footer">
+                <button class="ClosePopup"></button>
             </div>
         </div>
     </div>
 </body>
 <script src="/static/js/mission.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    
+        let missionButtons = document.querySelectorAll('.main-mission, .serve-mission');
+        missionButtons.forEach(button => {
+    
+            button.addEventListener('click', function(event) {
+                event.preventDefault();  // 기본 이벤트를 중지합니다.
+    
+                let missionId = button.getAttribute('data-mission-id');
+    
+                fetch(`/complete_mission_js/${missionId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.completed) {
+                        // 미션을 완료한 경우의 UI 업데이트 (예: 텍스트 변경)
+                        button.textContent = 'Completed';
+                    } else {
+                        // 미션을 완료하지 않은 경우의 UI 업데이트
+                        button.textContent = 'Not Completed';
+                    }
+                });
+            });
+    
+        });
+    });
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            let cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    </script>
+    
 </html>
