@@ -1,57 +1,226 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Calendar</title>
 </head>
 <body>
-    <h1>{{ year }}년 {{ month }}월</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>일</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for week in calendar %}
-            <tr>
-                {% for day in week %}
-                <td {% if day and day != 'None' and day != '' %}style="color: black;"{% else %}style="color: lightgray;"{% endif %}>
-                    {% if day %}
-                        <a href="{% url 'mood_detail' year=year month=month day=day %}">{{ day }}</a>
-                        <br>
-                    {% endif %}
-                </td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-
-            {% for week_color in calendar_color %}
-            <tr>
-                {% for mood_colors in week_color %}
-                <td>
-                    {% if mood_colors %}
-                        {% for color in mood_colors %}
-                            {% if forloop.counter <= 4 %}
-                                <span style="background-color: {{ color.code|add:'' }}; display: inline-block; width: 20px; height: 20px;"></span>
-                            {% endif %}
+    <div class="background">
+        <div class="header">
+            <div class="title">Calendar</div>
+        </div>
+        <div class="contentBody">
+            <div class="year">{{ year }}년</div> 
+            <div class="Form">
+                <div class="month">{{ month }}</div>
+                <table class="calendar" style="table-layout: fixed">
+                    <thead class="calendarHeader">
+                        <tr>
+                            <th class="day">SUN</th>
+                            <th class="day">MON</th>
+                            <th class="day">TUE</th>
+                            <th class="day">WED</th>
+                            <th class="day">THU</th>
+                            <th class="day">FRI</th>
+                            <th class="day">SAT</th>
+                        </tr>
+                    </thead>
+                    <tbody class="calendarBody">
+                        {% for week in calendar %}
+                        <tr class="calendarLine">
+                            {% for day in week %}
+                            <td class="calendarDay" {% if day and day != 'None' and day != '' %}style="color: black;"{% else %}style="color: lightgray;"{% endif %}>
+                                {% if day %}
+                                <a class="date" href="{% url 'mood_detail' year=year month=month day=day %}">{{ day }}</a>
+                                <div class="color">
+                                    {% if mood_colors %}
+                                        {% for color in mood_colors %}
+                                            {% if forloop.counter <= 4 %}
+                                                <span style="background-color: {{ color.code|add:'' }};"></span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
                         {% endfor %}
-                    {% else %}
-                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
-                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
-                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
-                        <span style="background-color: lightgray; display: inline-block; width: 20px; height: 20px;"></span>
-                    {% endif %}
-                </td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                        {% for week_color in calendar_color %}
+                        <!-- <tr>
+                            {% for mood_colors in week_color %}
+                            <td>
+                                {% if mood_colors %}
+                                    {% for color in mood_colors %}
+                                        {% if forloop.counter <= 4 %}
+                                            <span style="background-color: {{ color.code|add:'' }};"></span>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr> -->
+                        {% endfor %}
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            <!-- <a class="back" href="{% url 'home' %}"></a> -->
+        </div>
+    </div>
 </body>
 </html>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        background-position: top;
+        background-repeat: no-repeat; 
+        background: #D7BE8B;
+    }
+    .background {
+        width: 390px;
+        height: 844px;
+        display: flex;
+        flex-direction: column;
+        background-image: url(/static/muzi-calendar.png);
+        /* transition: top 0.8s cubic-bezier(0.2, .5, .5, 1); */
+        }
+    .header {
+        width: 100%;
+        height: 25%;
+        display: flex;
+        justify-content: center;
+    }
+    .title {
+        font-size: 12px;
+        color: #707f50;;
+        background-color: #efeaca;
+        border-radius: 10px;
+        width: 130px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        padding: 10px;
+        margin-top: 20px;
+    }
+    .contentBody {
+        width: 100%;
+        height: 57%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .year {
+        position: absolute;
+        top: 260px;
+        color: #867859;
+        background-color: #efeaca;
+        border-radius: 7px;
+        width: 90px;
+        height: 27px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.7;
+    }
+    .Form {
+        width: 252px;
+        height: 310px;
+        padding: 0 0 20px 0;
+    }
+    .month {
+        height: 18%;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .calendar {
+        width: 100%;
+    }
+    .calendarHeader {
+        width: 100%;
+        height: 12%;
+        border: 1px solid black;
+    }
+    .day {
+        color: #867859;
+        font-size: 3px;
+    }
+    .calendarBody {
+        width: 100%;
+        height: 70%;
+    }
+    .calendarLine {
+        width: 252px;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 18px;
+        border-top: solid 1px #867859;
+    }
+    .calendarDay {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+    .date {
+        font-size: 2px;
+        color: #867859;
+        text-decoration-line: none;
+    }
+    .color {
+        display: flex;
+        flex-direction: column;
+    }
+    span {
+        background-color: #fff;
+        opacity: 0.5;
+        display: inline-block;
+        width: 15px; 
+        height: 4px;
+        margin-bottom: 2px;
+    }
+    .footer{
+        width: 100%;
+        height: 18%;
+        transition: opacity 0.7s ease-in;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .back {
+        width: 45px;
+        height: 45px;
+        background-image: url(/static/back-button.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: transparent;
+        padding: 6px;
+        border: none;
+    }
+    /* table {
+        border: solid 1px black;
+    } */
+</style>

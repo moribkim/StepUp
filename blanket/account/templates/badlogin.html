@@ -1,13 +1,74 @@
-<head>
-    <link rel="stylesheet" href="badlogin.css"/>
-    <title>badlogin</title>
-</head>
-<body>
-    <div class="background">
-        <div class="goregister">
-            <p>존재하지 않는 회원입니다.</p>
-            <p>다시 로그인해주세요.</p>
-            <a href="{% url 'login' %}">다시 로그인하기</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>badlogin</title>
+    </head>
+    <body>
+        <div class="background">
+            <div class="goregister">
+                <p>존재하지 않는 회원입니다.</p>
+                <p>다시 로그인해주세요.</p>
+                <a href="{% url 'login' %}">다시 로그인하기</a>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+    }
+    .background {
+        width: 390px;
+        height: 844px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+    .background::after {
+        width: 390px;
+        height: 844px;
+        content: "";
+        background: url(/static/home-bright-open\ 1.png)center / cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.5;
+    }
+    .goregister {
+        width: 220px;
+        height: 120px;
+        margin-top: 50px;
+        padding: 15px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+    .goregister::after {
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        opacity: 0.5;
+        border-radius: 10px;
+        z-index: -1;
+    }
+    p {
+        margin: 10px;
+        font-size: 15px;
+    }
+    a {
+        margin-top: 16px;
+        font-size: 15px;
+    }
+</style>

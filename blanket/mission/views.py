@@ -28,7 +28,7 @@ def assign_missions(request):
         for sub_mission in sub_missions:
             UserMission.objects.create(user=user, mission=sub_mission, date=today)
 
-    #return redirect('mission_list')
+    return redirect('mission_list')
 
 @login_required
 def complete_mission(request, mission_id):
@@ -38,7 +38,7 @@ def complete_mission(request, mission_id):
     else:
         user_mission.completed = True
     user_mission.save()
-    #return redirect('mission_list')
+    return redirect('mission_list')
 
 @login_required
 def complete_mission_js(request, mission_id):
