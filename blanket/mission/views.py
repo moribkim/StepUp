@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import Mission, UserMission
+from django.http import JsonResponse
 
 import random
 
@@ -27,14 +28,30 @@ def assign_missions(request):
         for sub_mission in sub_missions:
             UserMission.objects.create(user=user, mission=sub_mission, date=today)
 
-    return redirect('mission_list')
+    #return redirect('mission_list')
 
 @login_required
 def complete_mission(request, mission_id):
     user_mission = get_object_or_404(UserMission, id=mission_id)
-    user_mission.completed = True
+    if user_mission.completed == True:
+        user_mission.completed = False
+    else:
+        user_mission.completed = True
     user_mission.save()
-    return redirect('mission_list')
+    #return redirect('mission_list')
+
+@login_required
+def complete_mission_js(request, mission_id):
+    if request.method == "POST":
+        user_mission = get_object_or_404(UserMission, id=mission_id)
+        if user_mission.completed == True:
+            user_mission.completed = False
+        else:
+            user_mission.completed = True 
+        user_mission.save()
+        return JsonResponse({'completed': user_mission.completed}, status=200)
+    return JsonResponse({'error': 'Invalid method'}, status=400)
+
 
 @login_required
 def mission_list(request):
@@ -48,3 +65,19 @@ def mission_list(request):
     main_mission = UserMission.objects.filter(user=user, date=today, mission__type='main').first()
     sub_missions = UserMission.objects.filter(user=user, date=today, mission__type='sub')
     return render(request, 'mission_list.html', {'main_mission': main_mission, 'sub_missions': sub_missions})
+
+@login_required
+def change_mission(request, mission_id):
+    user_mission = get_object_or_404(UserMission, id=mission_id)
+
+    if user_mission.mission.type == 'main':
+        missions = Mission.objects.filter(type='main').exclude(id=user_mission.mission.id)
+        mission_changed = random.choice(missions)
+    else:
+        missions = Mission.objects.filter(type='sub').exclude(id=user_mission.mission.id)
+        mission_changed = random.choice(missions)
+    
+    user_mission.mission = mission_changed
+    user_mission.save()
+    
+    return redirect('mission_list')

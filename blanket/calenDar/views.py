@@ -4,11 +4,13 @@ import datetime
 from django.utils import timezone
 from calendar import monthrange
 from mission.models import *
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
-
+@login_required
 def mood_calendar(request, year=None, month=None):
-    today = timezone.now()
+    today = timezone.now().date()
 
     year = int(year) if year else today.year
     month = int(month) if month else today.month
@@ -64,6 +66,7 @@ def mood_calendar(request, year=None, month=None):
 
     return render(request, 'mood_calendar.html', context)
 
+@login_required
 def mood_detail(request, year, month, day):
     date = datetime.date(year, month, day)
     try:
@@ -85,7 +88,8 @@ def get_mood_colors(date):
         return mood_colors
     else:
         return []
-    
+
+@login_required    
 def record_edit(request, id):
     edit_mood = Mood.objects.get(id=id)
     colors = edit_mood.color_set.all()

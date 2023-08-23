@@ -4,17 +4,28 @@ from .models import Mood, Color, Word
 from mission.models import UserMission
 from django.utils import timezone
 import datetime
+from account.views import login
 #from mission.models import Mission
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html')
 
+@login_required
 def record(request):
+    today = timezone.now().date()
+    try:
+        edit_record = Mood.objects.get(created_at__date=today)
+        colors = edit_record.color_set.all()
+        words = edit_record.word_set.all()
+        return render(request, 'record_edit.html', {'mood':edit_record, 'colors': colors, 'words': words})
     #user = request.user
     #today = timezone.now().date()
-    return render(request, 'record.html') 
-
+    #if not request.user.is_authenticated:
+    #    return redirect(login)
+    except:
+        return render(request, 'record.html') 
+ 
 @login_required
 def record_submit(request):
     if request.method == 'POST':
@@ -77,7 +88,6 @@ def record_update(request, id):
             Word.objects.create(mood=mood, name=word_text)
 
         # 당일 수행한 미션과 연결
-        # today = timezone.now().date()
         today = datetime.date(year, month, day)
         completed_missions = UserMission.objects.filter(user=request.user, completed=True, date=today)
         for mission in completed_missions:
