@@ -1,12 +1,73 @@
-<head>
-    <link rel="stylesheet" href="alert.css"/>
-    <title>Alert</title>
-</head>
-<body>
-    <div class="background">
-        <div class="goregister">
-            <p>이미 존재하는 아이디입니다.</p>
-            <a href="{% url 'signup' %}">다시 회원가입 하기</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Alert</title>
+    </head>
+    <body>
+        <div class="background">
+            <div class="goregister">
+                <p>이미 존재하는 아이디입니다.</p>
+                <a href="{% url 'signup' %}">다시 회원가입 하기</a>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+    }
+    .background {
+        width: 390px;
+        height: 844px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+    .background::after {
+        width: 390px;
+        height: 844px;
+        content: "";
+        background: url(/static/home-bright-open\ 1.png)center / cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.5;
+    }
+    .goregister {
+        width: 220px;
+        height: 90px;
+        margin-top: 50px;
+        padding: 15px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+    .goregister::after {
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        opacity: 0.5;
+        border-radius: 10px;
+        z-index: -1;
+    }
+    p {
+        margin: 10px;
+        font-size: 15px;
+    }
+    a {
+        margin-top: 16px;
+        font-size: 15px;
+    }
+</style>
