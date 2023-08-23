@@ -7,47 +7,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }, );
 });
 
+//
+//Help
+//
+const HelpBtn = document.getElementsByClassName("Btn-help")[0];
+const Help = document.getElementsByClassName("Help")[0];
+const HelpClose = document.getElementsByClassName("HelpClose")[0];
+
+HelpBtn.addEventListener("click", () => {
+    Help.style.display = "block";
+});
+
+HelpClose.addEventListener("click", () => {
+    Help.style.display = "none";
+});
+
 
 //
 // Window home page
 //
 const modal = document.querySelector('.mission-popup');
-const modalSwitch = document.querySelector('.popup-switch');
+const modalClose = document.querySelector('.ClosePopup');
 const windowBtn = document.querySelector('.Btn-window');
 const footer = document.querySelector('.footer');
-let page = "close";
 
 windowBtn.addEventListener('click', () => {
-    if(page === "close"){
-        footer.style.opacity = 0;
+    footer.style.opacity = 0;
         
-        setTimeout(() => {
-            modal.style.top = '360px';
-            page = "half";
-        }, 200);
-
-        windowBtn.disabled = true;
-        windowBtn.style.pointerEvents = "none";
-    }
-});
-
-modalSwitch.addEventListener('click', () => {
-    if(page === "half"){
+    setTimeout(() => {
         modal.style.top = '20px';
-        page ="full";
-    }
-    else if(page ==="full"){
-        modal.style.top = "844px";
-        footer.style.opacity = 1;
-        page = "close";
-        windowBtn.disabled = false;
-        windowBtn.style.pointerEvents = "auto";
+    }, 200);
+
+    windowBtn.disabled = true;
+    windowBtn.style.pointerEvents = "none";
+});
+
+modalClose.addEventListener('click', () => {
+    modal.style.top = "844px";
+    footer.style.opacity = 1;
+    windowBtn.disabled = false;
+    windowBtn.style.pointerEvents = "auto";
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    let mainMissionCompleted = document.querySelector('.main-mission').getAttribute('data-completed') === 'true';
+    let allSubMissions = document.querySelectorAll('.serve-mission');
+    let allSubMissionsCompleted = Array.from(allSubMissions).every(mission => mission.getAttribute('data-completed') === 'true');
+
+    if (mainMissionCompleted) {
+        // 미션이 완료된 경우 바로 표시
+        displayui();
     }
 });
+
+function displayui() {
+    // 완료되었을 때 즉각적으로 보이기 바라는 ui
+    page = "full";
+}
 
 //
 // Mission Popup page
 //
+
 const mainBtn = document.querySelector('.main-mission');
 const misFixed = document.querySelector('.mission-fixed');
 const misExplain = document.querySelector('.mission-explanation');
@@ -63,6 +84,7 @@ const record = document.querySelector('.Btn-record');
 let mainComplete = false;
 
 const missionComplete = () => {
+
     mainBtn.style.backgroundColor = "#FFF7D9";
     misFixed.innerHTML = "미션 완료!";
     misExplain = "";
@@ -104,7 +126,6 @@ const missionInComplete = () => {
 
 //Main mission complete and change contents
 mainBtn.addEventListener('click', () => {
-    console.log(mainComplete);
     if(mainComplete === true){
         mainComplete = false;
         missionInComplete();
