@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="/static/css/mission.css">
 </head>
-<body class="fade">
+<body>
 
     <!-- 창문 배경 -->
     <div class="appBody">
@@ -17,7 +18,7 @@
         </div>
         <div class="contentBody">
             <!-- 창문 클릭 시 미션 팝업 페이지 올라옴 -->
-            <button class="Btn-window"></button>
+            <button class="Btn-window" disabled></button>
         </div>
         <div class="footer">
             <!-- 기본 옵션 버튼 -->
@@ -47,7 +48,10 @@
             </div>
             <div class="popup-body">
                 <!-- 메인 미션 버튼 클릭 시 미션 완료됨 -->
-                <button class="main-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';">
+                <button class="main-mission" 
+                data-mission-id="{{ main_mission.id }}"
+                data-completed="{{ main_mission.completed|yesno:'true,false' }}"
+                onclick="location.href='{% url 'complete_mission' main_mission.id %}';">
                     <p class="main-title">{{ main_mission.mission.name }}</p>
                     <hr class="main-line">
                     <div class="main-content">
@@ -67,11 +71,14 @@
 
                 <!-- 서브미션 버튼 -->
                 {% for sub_mission in sub_missions %}
-                <div class="serve-wrapper">
-                    <button class="serve-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';" disabled>
-                        <p class="serve-content">{{ sub_mission.mission.name }}</p>
+                <div class="sub-wrapper">
+                    <button class="sub-mission"
+                    data-mission-id="{{ sub_mission.id }}"
+                    data-completed="{{ sub_mission.completed|yesno:'true,false' }}"
+                    onclick="location.href='{% url 'complete_mission' sub_mission.id %}';" disabled>
+                        <p class="sub-content">{{ sub_mission.mission.name }}</p>
                     </button>
-                    <button class="serve-shuffle"></button>
+                    <button class="sub-shuffle"></button>
                 </div>
                 {% endfor %}
 
@@ -83,53 +90,5 @@
     </div>
 </body>
 <script src="/static/js/mission.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    
-        let missionButtons = document.querySelectorAll('.main-mission, .serve-mission');
-        missionButtons.forEach(button => {
-    
-            button.addEventListener('click', function(event) {
-                event.preventDefault();  // 기본 이벤트를 중지합니다.
-    
-                let missionId = button.getAttribute('data-mission-id');
-    
-                fetch(`/complete_mission_js/${missionId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRFToken': getCookie('csrftoken')
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.completed) {
-                        // 미션을 완료한 경우의 UI 업데이트 (예: 텍스트 변경)
-                        button.textContent = 'Completed';
-                    } else {
-                        // 미션을 완료하지 않은 경우의 UI 업데이트
-                        button.textContent = 'Not Completed';
-                    }
-                });
-            });
-    
-        });
-    });
-    
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            let cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-    </script>
     
 </html>
