@@ -4,4 +4,5 @@ urlpatterns=[
     #path('quote/', quote, name='quote'),
     path('',home,name='home'),
     path('desk',desk,name='desk'),
+    path('window',window,name='window'),
 ]

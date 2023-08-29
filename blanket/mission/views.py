@@ -40,10 +40,15 @@ def complete_mission(request, mission_id):
     user_mission.save()
     return redirect('mission_list')
 
+
 @login_required
 def complete_mission_js(request, mission_id):
     if request.method == "POST":
+        
+        
         user_mission = get_object_or_404(UserMission, id=mission_id)
+
+
         if user_mission.completed == True:
             user_mission.completed = False
         else:
