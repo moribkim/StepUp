@@ -50,8 +50,7 @@
                 <!-- 메인 미션 버튼 클릭 시 미션 완료됨 -->
                 <button class="main-mission" 
                 data-mission-id="{{ main_mission.id }}"
-                data-completed="{{ main_mission.completed|yesno:'true,false' }}"
-                onclick="location.href='{% url 'complete_mission' main_mission.id %}';">
+                data-completed="{{ main_mission.completed|yesno:'true,false' }}">
                     <p class="main-title">{{ main_mission.mission.name }}</p>
                     <hr class="main-line">
                     <div class="main-content">
@@ -75,7 +74,7 @@
                     <button class="sub-mission"
                     data-mission-id="{{ sub_mission.id }}"
                     data-completed="{{ sub_mission.completed|yesno:'true,false' }}"
-                    onclick="location.href='{% url 'complete_mission' sub_mission.id %}';" disabled>
+                    disabled>
                         <p class="sub-content">{{ sub_mission.mission.name }}</p>
                     </button>
                     <button class="sub-shuffle"></button>

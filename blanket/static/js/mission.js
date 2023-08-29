@@ -11,13 +11,10 @@
 //Help
 //
 
-document.addEventListener("DOMContentLoaded", function() {
-
     let missionButtons = document.querySelectorAll('.main-mission, .sub-mission');
     missionButtons.forEach(button => {
-
-        button.addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 이벤트를 중지합니다.
+        button.addEventListener('click', function() {
+            console.log(button);
 
             let missionId = button.getAttribute('data-mission-id');
 
@@ -33,15 +30,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (data.completed) {
                     // 미션을 완료한 경우의 UI 업데이트 (예: 텍스트 변경)
                     missionComplete();
+                    // ReloadBtn();
                 } else {
                     // 미션을 완료하지 않은 경우의 UI 업데이트
                     missionInComplete();
+                    // ReloadBtn();
                 }
             });
         });
 
     });
-});
+
 
 function getCookie(name) {
     let cookieValue = null;
@@ -101,15 +100,29 @@ modalClose.addEventListener('click', () => {
 // 미션 페이지가 새로고침 되었을 때
 document.addEventListener("DOMContentLoaded", function() {
     let mainMissionCompleted = document.querySelector('.main-mission').getAttribute('data-completed') === 'true';
-    let allSubMissions = document.querySelectorAll('.sub-mission');
+    // let allSubMissions = document.querySelectorAll('.sub-mission').getAttribute('data-completed')[0];
 
     modal.style.display = "flex";
-    if (mainMissionCompleted === false) {
-        missionInComplete();
-    }
-    else{
+    if (mainMissionCompleted === true) {
         missionComplete();
     }
+    else{
+        missionInComplete();
+    }
+
+    // if (allSubMissions === true) {
+    //     subBtn[0].style.backgroundColor = "#FFF7D9";
+    // }
+    // else{
+    //     missionInComplete();
+    // }
+
+    // for(let i=0; i < 3; i++){
+    //     console.log(allSubMissions[i]);
+    //     if(allSubMissions[i] === true){
+    //         subBtn[i].style.backgroundColor = "#FFF7D9";
+    //     }
+    // };
 });
 
 
