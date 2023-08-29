@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission</title>
-    <link rel="stylesheet" href="mission.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="/static/css/mission.css">
 </head>
-<body class="fade">
+<body>
 
     <!-- 창문 배경 -->
     <div class="appBody">
@@ -17,7 +18,7 @@
         </div>
         <div class="contentBody">
             <!-- 창문 클릭 시 미션 팝업 페이지 올라옴 -->
-            <button class="Btn-window"></button>
+            <button class="Btn-window" disabled></button>
         </div>
         <div class="footer">
             <!-- 기본 옵션 버튼 -->
@@ -27,14 +28,18 @@
                 <button class="Btn-setting"></button>
             </div>
             <!-- 뒤로 가기 버튼 -->
-            <button class="Btn-back" onclick="location.href= '../../home/templates/home.html'"></button>
+            <button class="Btn-back" onclick="location.href= '../'"></button>
         </div>
         
+        <div class="Help">
+            <img class="Help-Img" src="/static/Mission-Help.png">
+            <button class="HelpClose"></button>
+        </div>
 
         <!-- 미션 페이지 -->
         <div class="mission-popup">
             <div class="popup-header">
-                <button class="popup-switch">
+                <button class="popup-switch" disabled>
                     <hr class="popup-switch-line">
                 </button>
                 <div class="popup-header-box">
@@ -43,7 +48,9 @@
             </div>
             <div class="popup-body">
                 <!-- 메인 미션 버튼 클릭 시 미션 완료됨 -->
-                <button class="main-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';">
+                <button class="main-mission" 
+                data-mission-id="{{ main_mission.id }}"
+                data-completed="{{ main_mission.completed|yesno:'true,false' }}">
                     <p class="main-title">{{ main_mission.mission.name }}</p>
                     <hr class="main-line">
                     <div class="main-content">
@@ -54,6 +61,7 @@
                         <!-- 메인 미션에 대한 활동 설명 -->
                         <p class="mission-explanation">{{ main_mission.mission.description }}</p>
                     </div>
+                    <button class="main-shuffle"></button>
                 </button>
                 <!-- 감정기록 버튼 클릭 시 이동-->
                 <button class="Btn-record" disabled>
@@ -62,16 +70,24 @@
 
                 <!-- 서브미션 버튼 -->
                 {% for sub_mission in sub_missions %}
-                <button class="serve-mission" onclick="location.href='{% url 'complete_mission' main_mission.id %}';" disabled>
-                    <p class="serve-content">{{ sub_mission.mission.name }}</p>
-                </button>
+                <div class="sub-wrapper">
+                    <button class="sub-mission"
+                    data-mission-id="{{ sub_mission.id }}"
+                    data-completed="{{ sub_mission.completed|yesno:'true,false' }}"
+                    disabled>
+                        <p class="sub-content">{{ sub_mission.mission.name }}</p>
+                    </button>
+                    <button class="sub-shuffle"></button>
+                </div>
                 {% endfor %}
 
             </div>
             <div class="popup-footer">
+                <button class="ClosePopup"></button>
             </div>
         </div>
     </div>
 </body>
-<script src="mission.js"></script>
+<script src="/static/js/mission.js"></script>
+    
 </html>

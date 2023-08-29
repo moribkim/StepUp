@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     window.setTimeout(() => {
         document.body.classList.remove('fade');
-    }, 500);
+    }, );
 });
 
 const appBody = document.getElementsByClassName("appBody")[0];
@@ -22,7 +22,20 @@ winBtn.addEventListener("click", () => {
         homeState = "bright";
 
         setTimeout(() => {
-            location.href = '/static/mission.html';
+            // location.href = "{% url 'mission_list' %}";
         }, 1000);
     }
 });
+
+const HelpBtn = document.getElementsByClassName("Btn-help")[0];
+const Help = document.getElementsByClassName("Help")[0];
+const HelpClose = document.getElementsByClassName("HelpClose")[0];
+
+HelpBtn.addEventListener("click", () => {
+    Help.style.display = "block";
+});
+
+HelpClose.addEventListener("click", () => {
+    Help.style.display = "none";
+});
+
