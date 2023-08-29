@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <link rel="stylesheet" href="/static/css/mission.css">
+    <link rel="stylesheet" href="/static/css/mission.css?ver=1">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
         </div>
         <div class="contentBody">
             <!-- 창문 클릭 시 미션 팝업 페이지 올라옴 -->
-            <button class="Btn-window" disabled></button>
+            <button class="Btn-window"></button>
         </div>
         <div class="footer">
             <!-- 기본 옵션 버튼 -->
@@ -73,8 +73,7 @@
                 <div class="sub-wrapper">
                     <button class="sub-mission"
                     data-mission-id="{{ sub_mission.id }}"
-                    data-completed="{{ sub_mission.completed|yesno:'true,false' }}"
-                    disabled>
+                    data-completed="{{ sub_mission.completed|yesno:'true,false' }}" disabled>
                         <p class="sub-content">{{ sub_mission.mission.name }}</p>
                     </button>
                     <button class="sub-shuffle"></button>
@@ -88,6 +87,6 @@
         </div>
     </div>
 </body>
-<script src="/static/js/mission.js"></script>
+<script src="/static/js/mission.js?ver=1"></script>
     
 </html>
