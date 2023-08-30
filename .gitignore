@@ -16,3 +16,5 @@ db.sqlite3
 __pycache__/
 
 migrations
+
+blanket/node_modules

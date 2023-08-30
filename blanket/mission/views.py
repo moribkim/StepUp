@@ -17,7 +17,7 @@ def assign_missions(request):
     # 오늘 날짜에 해당 사용자에게 할당된 미션이 있는지 확인
     if not UserMission.objects.filter(user=user, date=today).exists():
 
-       # main 미션 할당
+        # main 미션 할당
         main_missions = Mission.objects.filter(type='main')
         main_mission = random.choice(main_missions)
         UserMission.objects.create(user=user, mission=main_mission, date=today)
@@ -42,14 +42,14 @@ def complete_mission(request, mission_id):
 
 @login_required
 def complete_mission_js(request, mission_id):
-    if request.method == "POST":
+    if request.method == "GET":
         user_mission = get_object_or_404(UserMission, id=mission_id)
         if user_mission.completed == True:
             user_mission.completed = False
         else:
             user_mission.completed = True 
         user_mission.save()
-        return JsonResponse({'completed': user_mission.completed}, status=200)
+        return JsonResponse({'completed': user_mission.completed, 'type': user_mission.mission.type}, status=200)
     return JsonResponse({'error': 'Invalid method'}, status=400)
 
 

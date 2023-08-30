@@ -1,7 +1,9 @@
 //
-// Page convertion animation
+// Dom loaded
 //
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Page Animation
     window.setTimeout(() => {
         document.body.classList.remove('fade');
     }, );
@@ -14,17 +16,20 @@ const HelpBtn = document.getElementsByClassName("Btn-help")[0];
 const Help = document.getElementsByClassName("Help")[0];
 const HelpClose = document.getElementsByClassName("HelpClose")[0];
 
+// open
 HelpBtn.addEventListener("click", () => {
     Help.style.display = "block";
 });
 
+
+// close
 HelpClose.addEventListener("click", () => {
     Help.style.display = "none";
 });
 
 
 //
-// Window home page
+// Window home page about modal animation
 //
 const modal = document.querySelector('.mission-popup');
 const modalClose = document.querySelector('.ClosePopup');
@@ -49,96 +54,162 @@ modalClose.addEventListener('click', () => {
     windowBtn.style.pointerEvents = "auto";
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    let mainMissionCompleted = document.querySelector('.main-mission').getAttribute('data-completed') === 'true';
-    let allSubMissions = document.querySelectorAll('.serve-mission');
-    let allSubMissionsCompleted = Array.from(allSubMissions).every(mission => mission.getAttribute('data-completed') === 'true');
-
-    if (mainMissionCompleted) {
-        // 미션이 완료된 경우 바로 표시
-        displayui();
-    }
-});
-
-function displayui() {
-    // 완료되었을 때 즉각적으로 보이기 바라는 ui
-    page = "full";
-}
-
 //
 // Mission Popup page
 //
-
 const mainBtn = document.querySelector('.main-mission');
 const misFixed = document.querySelector('.mission-fixed');
 const misExplain = document.querySelector('.mission-explanation');
+const mainShuf = document.querySelector('.main-shuffle');
+let misExplain_content = misExplain.innerHTML;
 
-const serNum = 3;
-const serBtn = document.querySelectorAll('.serve-mission');
-const serMis = document.querySelectorAll('.serve-content');
-const serShuf = documnet.querySelectorAll('.serve-shuffle')
+const subNum = 3;
+const subBtn = document.querySelectorAll('.sub-mission');
+const subMis = document.querySelectorAll('.sub-content');
+const subShuf = document.querySelectorAll('.sub-shuffle');
 const record = document.querySelector('.Btn-record');
 
 //Main Mission complete
-//change main mission style, activate serve mission button
-let mainComplete = false;
+//change main mission style, activate sub mission button
+const MainMisComplete = () => {
+    misFixed.innerHTML = "";
+    misExplain.innerHTML = "미션 완료!";
 
-const missionComplete = () => {
-
-    mainBtn.style.backgroundColor = "#FFF7D9";
-    misFixed.innerHTML = "미션 완료!";
-    misExplain = "";
-
-    for(let i=0; i < serNum; i++){
-        serBtn[i].disabled = false;
-        serBtn[i].style.backgroundImage = "none";
-        serBtn[i].style.opacity = 0.9;
-        serMis[i].style.opacity = 1;
-        serShuf[i].style.display = 'block';
+    // change sub mission style
+    for(let i=0; i < subNum; i++){
+        subBtn[i].disabled = false;
+        subBtn[i].style.backgroundImage = "none";
+        subBtn[i].style.opacity = 0.9;
+        subMis[i].style.opacity = 1;
+        subShuf[i].style.display = "block";
     };
-    //record open
+
+    // record open
     record.disabled = false;
     record.style.opacity = 0.9;
     record.style.backgroundColor = "#FFF7D9";
+
+    // main shuffle disabled
+    mainShuf.disabled = true;
+    mainShuf.style.display = "none";
+    mainShuf.style.backgroundImage = "none";
+
 }
 
 //Main Mission Incomplete
 //change main mission style, deactivate serve mission button
-const missionInComplete = () => {
-    mainBtn.style.backgroundColor = "#C6C993";
+const MainMisInComplete = () => {
     misFixed.innerHTML = "오늘 하루의 첫 미션";
-    misExplain.innerHTML = "베개와 이불을 제자리로 정돈하기";    
+    misExplain.innerHTML = misExplain_content;    
 
-    for(let i=0; i < serNum; i++){
-        serBtn[i].disabled = true;
-        serBtn[i].style.opacity = 0.5;
-        serMis[i].style.opacity = 0;
-        serShuf[i].style.display = 'none';
+    // change submission style
+    for(let i=0; i < subNum; i++){
+        subBtn[i].disabled = true;
+        subBtn[i].style.opacity = 0.5;
+        subMis[i].style.opacity = 0;
+        subShuf[i].style.display = "none";
         setTimeout(()=>{
-            serBtn[i].style.backgroundImage = "url(../images/locked-image.png)";
+            subBtn[i].style.backgroundImage = "url(/static/locked-image.png)";
         }, 600);
     };
+
     //record open
     record.disabled = true;
     record.style.opacity = 0.5;
     record.style.backgroundColor = "#C6C993";
+
+    //main shuffle abled
+    mainShuf.disabled = false;
+    mainShuf.style.display = "block";
+    mainShuf.style.backgroundImage = "url(/static/big-shuffle.png)";
 }
 
-//Main mission complete and change contents
-mainBtn.addEventListener('click', () => {
-    if(mainComplete === true){
-        mainComplete = false;
-        missionInComplete();
+// Redirected Mission page
+// Set inital Mission page style
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Main Mission style
+    let mainMissionCompleted = mainBtn.getAttribute('data-completed') === 'true';
+    if (mainMissionCompleted) {
+        // completed style
+        MainMisComplete();
+        mainBtn.style.backgroundColor = "#FFF7D9";
     }
-    else if(mainComplete === false){
-        mainComplete = true;
-        missionComplete();
+    else{
+        // incompleted style
+        MainMisInComplete();
+        mainBtn.style.backgroundColor = "#C6C993";
+    }
+
+    // Sub Mission style
+    for(let i=0; i < subNum; i++){
+        let subMissionsCompleted = subBtn[i].getAttribute('data-completed');
+
+        if(subMissionsCompleted === "true"){
+            // completed style
+            subBtn[i].style.backgroundColor = "#FFF7D9";
+        }
+        else{
+            // incompleted style
+            subBtn[i].style.backgroundColor = "#C6C993";
+        }
     }
 });
 
-//Serve mission complete and change color
-for(let i=0; i < serNum; i++){
-    serBtn[i].addEventListener('click', () => {
-        serBtn[i].style.backgroundColor = "#FFF7D9";
+//
+// when buttons clicked, Change FE and complete data
+//
+let missionButtons = document.querySelectorAll('.main-mission, .sub-mission');
+
+missionButtons.forEach(button => {
+    button.addEventListener('click', function() {
+
+        // Get id and type data of the button
+        let missionId = button.getAttribute('data-mission-id');
+        let missionType = button.getAttribute('data-mission-type');
+        
+        // Fetch data
+        fetch(`/mission/complete_mission_js/${missionId}`, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Mission completed, Change FE
+            if (data.completed) {
+                button.style.backgroundColor = "#FFF7D9";
+
+                if(data.type == "main"){
+                    MainMisComplete();
+                }
+            }
+            // Mission incompleted, Change FE
+            else {
+                button.style.backgroundColor = "#C6C993";
+
+                if(data.type == "main"){
+                    MainMisInComplete();
+                }
+            }
+        });
     });
-};
+});
+
+// cookiet function for fetch
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
