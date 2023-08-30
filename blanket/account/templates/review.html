@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+</head>
+<body>
+    <div class="background">
+        <div class="header">
+            <p class="title">의견 남기기</p>
+        </div>
+        <div class="contentsBody">
+            <div class="stars">
+                <fieldset>
+                    <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
+		            <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
+		            <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
+		            <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
+		            <input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
+                </fieldset>
+            </div>  
+            <div class="reviewBox">
+                <textarea class="textbox" name="text" rows="8" cols="50" placeholder="자유롭게 의견을 남겨주세요."></textarea>
+            </div>
+            <button>보내기</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+    }
+    .background {
+        width: 390px;
+        height: 844px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+    .background::after {
+        width: 390px;
+        height: 844px;
+        content: "";
+        background: url(/static/home-bright-open\ 1.png)center / cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        filter: blur(5px);
+    }
+    .header {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        height: 26%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title {
+        margin-top: 40px;
+        width: 170px;
+        height: 45px;
+        border-radius: 10px;
+        background-color: #667339;
+        opacity: 0.45;
+        font-size: 15px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contentsBody {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 74%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .stars {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    fieldset{
+        display: inline-block;
+        direction: rtl;
+        border:0;
+    }
+    fieldset legend{
+        text-align: right;
+    }
+    input[type=radio]{
+        display: none;
+    }
+    label{
+        font-size: 56px;
+        color: transparent;
+        text-shadow: 0 0 0 #ffffff;
+    }
+    label:hover{
+        text-shadow: 0 0 0 #CDC173;
+        opacity: 0.5;
+        transition: all 0.2s ease-in-out;
+    }
+    label:hover ~ label{
+        text-shadow: 0 0 0 #CDC173;
+        opacity: 0.5;
+        transition: all 0.2s ease-in-out;
+    }
+    input[type=radio]:checked ~ label{
+        text-shadow: 0 0 0 #CDC173;
+    }
+    textarea {
+        width: 290px;
+        height: 200px;
+        background-color: #fff;
+        padding: 18px;
+        opacity: 0.7;
+        border-radius: 10px;
+        border: none;
+        outline-color: transparent;
+        margin-bottom: 20px;
+        font-size: 15px;
+        color: #807439;
+    }
+    textarea:focus::placeholder {
+        color: transparent;
+        transition: all 0.2s ease-in-out;
+    }
+    button {
+        width: 60px;
+        height: 30px;
+        border-radius: 7px;
+        border: none;
+        background-color: #728457;
+        opacity: 0.5;
+        color: #fff;
+        font-size: 13px;
+        position: relative;
+        left: 100px;
+    }
+    button:hover {
+        opacity: 1;
+        transition: all 0.2s ease-in-out;
+    }
+</style>
