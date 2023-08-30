@@ -90,6 +90,12 @@
         background-position: top;
         background-repeat: no-repeat; 
         background: #D7BE8B;
+        opacity: 1;
+        transition-duration: 1s;
+        transition-property: opacity;
+    }
+    body.fade {
+        opacity: 0;
     }
     .background {
         width: 390px;
@@ -224,3 +230,11 @@
         border: solid 1px black;
     } */
 </style>
+<script>
+    document.body.className = 'fade';
+    document.addEventListener('DOMContentLoaded', () => {
+        window.setTimeout(() => {
+            document.body.classList.remove('fade');
+        });
+    });
+</script>

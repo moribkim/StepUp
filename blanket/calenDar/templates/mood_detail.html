@@ -41,7 +41,7 @@
                     {% endfor %}
                 </ul>
             </div>
-                <a class="back" href="{% url 'mood_calendar' %}"></a>
+            <a class="back" href="{% url 'mood_calendar' %}"></a>
         </div>
     </div>
 </body>
@@ -143,6 +143,8 @@
         background-color: transparent;
         padding: 6px;
         border: none;
+        position: absolute;
+        top: 630px;
     }
 </style>
 
@@ -150,5 +152,15 @@
     window.onload = function() {
         const popup = document.querySelector(".popup")
         popup.style.top = "0" + "px";
+    }
+
+    const back = document.querySelector(".back");
+    const pop = document.querySelector(".popup")
+
+    back.addEventListener("click", popdown);
+
+    function popdown(){
+        pop.style.top = "844" + "px";
+        pop.style.transition = "all" + "0.1s" + "ease-in-out";
     }
 </script>
