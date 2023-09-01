@@ -11,5 +11,6 @@ urlpatterns=[
     path('logout/', logout, name='logout'),
     path('signup/', signup, name='signup'),
     path('profile/', profile, name='profile'),
+    path('review/', review, name='review'),
 ]
 

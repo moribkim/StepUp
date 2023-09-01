@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from .models import *
 
 def account_check(request):
     return render(request, 'account_check.html')
@@ -51,3 +52,14 @@ def profile(request):
     userId = user.username
     userName =user.last_name
     return render(request, 'profile.html', {'userId': userId, 'userName': userName})
+
+@login_required
+def review(request):
+    if request.method == 'POST':
+        new_review = Review()
+        new_review.user = request.user
+        new_review.rating = request.POST['selected_stars']
+        new_review.comment = request.POST['text']
+        new_review.save()
+        return redirect('home')
+    return render(request, 'review.html')
