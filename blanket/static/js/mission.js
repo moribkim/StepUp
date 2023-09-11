@@ -12,6 +12,54 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //Help
 //
+
+    let missionButtons = document.querySelectorAll('.main-mission, .sub-mission');
+    missionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            console.log(button);
+
+            let missionId = button.getAttribute('data-mission-id');
+
+            fetch(`/mission/complete_mission_js/${missionId}`, {
+                method : 'POST',
+                headers : {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.completed) {
+                    // 미션을 완료한 경우의 UI 업데이트 (예: 텍스트 변경)
+                    missionComplete();
+                    // ReloadBtn();
+                } else {
+                    // 미션을 완료하지 않은 경우의 UI 업데이트
+                    missionInComplete();
+                    // ReloadBtn();
+                }
+            });
+        });
+
+    });
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
 const HelpBtn = document.getElementsByClassName("Btn-help")[0];
 const Help = document.getElementsByClassName("Help")[0];
 const HelpClose = document.getElementsByClassName("HelpClose")[0];
