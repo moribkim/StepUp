@@ -28,7 +28,7 @@ def assign_missions(request):
         for sub_mission in sub_missions:
             UserMission.objects.create(user=user, mission=sub_mission, date=today)
 
-    # return redirect('mission_list')
+    return redirect('mission_list')
 
 @login_required
 def complete_mission(request, mission_id):
@@ -44,17 +44,10 @@ def complete_mission(request, mission_id):
 @login_required
 def complete_mission_js(request, mission_id):
     if request.method == "POST":
-
-        
         user_mission = get_object_or_404(UserMission, id=mission_id)
-
-
-        if user_mission.completed == True:
-            user_mission.completed = False
-        else:
-            user_mission.completed = True 
+        user_mission.completed = not user_mission.completed
         user_mission.save()
-        return JsonResponse({'completed': user_mission.completed}, status=200)
+        return JsonResponse({'completed': user_mission.completed, 'type':user_mission.mission.type}, status=200)
     return JsonResponse({'error': 'Invalid method'}, status=400)
 
 

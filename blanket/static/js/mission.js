@@ -18,9 +18,9 @@
 
             let missionId = button.getAttribute('data-mission-id');
 
-            fetch(`/complete_mission_js/${missionId}/`, {
-                method: 'POST',
-                headers: {
+            fetch(`/mission/complete_mission_js/${missionId}`, {
+                method : 'POST',
+                headers : {
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRFToken': getCookie('csrftoken')
                 }

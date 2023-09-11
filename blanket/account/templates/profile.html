@@ -12,25 +12,33 @@
         <div class="프로필">
             <p>프로필</p>
         </div>
+
         <div class="image">
+        <img src="{{userImage.url}}" alt="유저 프로필 이미지"> 
         </div>
+
         <div class="group">
-            <p>{{ userName }}</p>
+            <p>닉네임: {{ userName }}</p>
             <hr>
         </div>
+
         <div class="group">
-            <p>abc@naver.com</p>
+            <p>이메일: {{userEmail}}</p>
             <hr>
         </div>
-        <div class="comment"></div>
+
+        <div class="comment">
+            <p>한 줄 소개: {{ userDesciption }}</p>
+        </div>
+
+
         <div class="edit">
             <img src="/static/edit.png">
-            <p>프로필 편집</p>
-            <a></a>
+            <a href="{% url 'profile_edit' %}"> 프로필 편집 </a>
         </div>
         <div class="logout">
             <img src="/static/logout.png">
-            <p>로그아웃</p>
+            <a href="{% url 'logout' %}" >로그아웃</a>
             <a></a>
         </div>
     </div>

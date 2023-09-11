@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="background">
+
+        <form method="POST" action="{% url 'profile_update' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+            <div class="프로필">
+                <p>프로필</p>
+            </div>
+
+            <!--이미지, 
+                (1) css에 userImageInput에 대한 label 추가(css 추개 내용은 없애도 되고,
+                사진 클릭시 수정이 아니라, 옆에 수정 버튼을 따로 두어도 됨)
+                (2) js에 사진 저장 전 미리보기 기능 추가-->
+            <input type="file" name="userImage" id="userImageInput" style="display:none;">
+            <label for="userImageInput">
+                    <div class="image">
+                        <img id="imagePreview" src="{{ userImage.url }}" alt="유저 프로필 이미지">
+                    </div>
+            </label>
+        
+            <!--닉네임, 공백 제출시 자동으로 익명이라 저장됨-->
+            <div class="group">
+                <p>닉네임:</p>
+                <input type="text" name="userName" value="{{ userName }}">
+                <hr>
+            </div>
+        
+            <!--이메일 js에서 유효성 검사됨-->
+            <div class="group">
+                <p>이메일:</p>
+                <input type="email" name="userEmail" value="{{ userEmail }}">
+                <hr>
+            </div>
+        
+            <!--한 줄 소개-->
+            <div class="comment">
+                <p>한 줄 소개:</p>
+                <input type="text" name="userDescription" value="{{ userDescription }}">
+            </div>
+
+
+            <button type="submit" value="프로필-업데이트">저장</button>
+
+        </form>
+        <div class="logout">
+            <img src="/static/logout.png">
+            <a href="{% url 'logout' %}" >로그아웃</a>
+            <a></a>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    /* 사용자에게 레이블이 클릭 가능함을 나타내기 위해 마우스 포인터 스타일 적용 */
+    label[for="userImageInput"] {
+        cursor: pointer;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+    }
+    .background {
+        width: 390px;
+        height: 844px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+    .background::after {
+        width: 390px;
+        height: 844px;
+        content: "";
+        background: url(/static/home-bright-open\ 1.png)center / cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        filter: blur(5px);
+    }
+    .프로필 {
+        width: 176px;
+        height: 41px;
+        border-radius: 10px;
+        background-color: #EFEACA;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        bottom: 88%;
+        transform: translateX(-50%);
+    }
+    .image {
+        width: 180px;
+        height: 180px;
+        background-color: #fff;
+        opacity: 0.5;
+        border-radius: 50%;
+    }
+    .group {
+        width: 200px;
+        height: 70px;
+        margin-top: 15px;
+    }
+    p {
+        padding: 0px 10px;
+    }
+    hr {
+        border: line #79736E;
+        width: 100%;
+    }
+    .comment {
+        margin-top: 20px;
+        width: 220px;
+        height: 100px;
+        background-color: #fff;
+        opacity: 0.5;
+        border-radius: 13px;
+    }
+    img {
+        width: 23px;
+        height: 23px;
+    }
+    .edit {
+        width: 220px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8px;
+    }
+    .logout {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 50%;
+        bottom: 7%;
+        transform: translateX(-50%);
+    }
+</style>
+
+<script>
+    // 폼 제출 이벤트를 감지
+    document.querySelector("form").addEventListener("submit", function(event) {
+        var emailInput = document.querySelector("[name='userEmail']");
+        var emailValue = emailInput.value;
+        // 간단한 이메일 유효성 검사 정규식
+        var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        
+        // 이메일 필드가 비어 있지 않을 때만 유효성 검사를 수행
+        if (emailValue && !regex.test(emailValue)) {
+            alert("유효한 이메일 주소를 입력해주세요.");
+            event.preventDefault(); // 폼 제출을 방지
+        }
+    });
+
+    // 프로필 이미지 저장 전에 미리보기
+    document.getElementById('userImageInput').addEventListener('change', function() {
+    var file = this.files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            // 미리보기 이미지 URL 설정
+            document.getElementById('imagePreview').src = event.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+    });
+
+</script>
