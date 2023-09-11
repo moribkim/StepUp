@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(blank=True,null=True,upload_to='userProfileImage', default='기본프로필_컬러.png') #upload_to=img_upload_to
+    image = models.ImageField(blank=True,null=True,upload_to='userProfileImage') #upload_to=img_upload_to
 
     def __str__(self):
         return f'id:{self.user.username} - nickname:{self.user.last_name} - profile'

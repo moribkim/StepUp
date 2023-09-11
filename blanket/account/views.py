@@ -17,7 +17,10 @@ def signup(request):
             if User.objects.filter(username=username).exists(): #TODO: id 같은 경우 처리하기.
                 return render(request, 'alert.html')
             password=request.POST.get('password')
-            last_name=request.POST.get('last_name')
+            nickname = request.POST.get('last_name')
+            if not nickname:  # 값이 빈 문자열이거나 None인 경우
+                nickname = "익명"
+            last_name = nickname
             user = User.objects.create_user(username=username, password=password, last_name=last_name) #email=email
             auth.login(request, user)
             return redirect('/')
@@ -71,8 +74,10 @@ def profile_update(request):
     if request.method == 'POST':
         userInfo = get_object_or_404(UserProfile, user = request.user)
         userInfo.image = request.FILES.get('userImage', userInfo.image)  # 이미지가 제공되지 않았을 경우 기존 이미지(또는 기본 이미지) 사용
-        userInfo.user.last_name = request.POST.get('userName', "익명")
-
+        nickname = request.POST.get('userName')
+        if not nickname:  # 값이 빈 문자열이거나 None인 경우
+            nickname = "익명"
+        userInfo.user.last_name = nickname
         userInfo.email = request.POST['userEmail']
         userInfo.description = request.POST['userDescription']
         userInfo.user.save() 

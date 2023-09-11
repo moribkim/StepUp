@@ -23,10 +23,14 @@
             <input type="file" name="userImage" id="userImageInput" style="display:none;">
             <label for="userImageInput">
                     <div class="image">
+                        {% if userImage %}
                         <img id="imagePreview" src="{{ userImage.url }}" alt="유저 프로필 이미지">
+                        {% else %}
+                        <img id="imagePreview" src="{% static '기본프로필_컬러.png' %}" alt="기본 프로필 이미지">
+                        {% endif %}
                     </div>
             </label>
-        
+
             <!--닉네임, 공백 제출시 자동으로 익명이라 저장됨-->
             <div class="group">
                 <p>닉네임:</p>
@@ -37,14 +41,14 @@
             <!--이메일 js에서 유효성 검사됨-->
             <div class="group">
                 <p>이메일:</p>
-                <input type="email" name="userEmail" value="{{ userEmail }}">
+                <input type="email" name="userEmail" value="{{ userEmail|default:'' }}">
                 <hr>
             </div>
         
             <!--한 줄 소개-->
             <div class="comment">
                 <p>한 줄 소개:</p>
-                <input type="text" name="userDescription" value="{{ userDescription }}">
+                <input type="text" name="userDescription" value="{{ userDescription|default:''  }}">
             </div>
 
 

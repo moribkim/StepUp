@@ -14,8 +14,13 @@
         </div>
 
         <div class="image">
-        <img src="{{userImage.url}}" alt="유저 프로필 이미지"> 
+            {% if userImage %}
+                <img src="{{ userImage.url }}" alt="유저 프로필 이미지">
+            {% else %}
+                <img src="{% static '기본프로필_컬러.png' %}" alt="기본 프로필 이미지"> <!--다른 이미지로 바꾸어도 됨-->
+            {% endif %}
         </div>
+
 
         <div class="group">
             <p>닉네임: {{ userName }}</p>
@@ -23,12 +28,12 @@
         </div>
 
         <div class="group">
-            <p>이메일: {{userEmail}}</p>
+            <p>이메일: {{userEmail|default:'' }}</p>
             <hr>
         </div>
 
         <div class="comment">
-            <p>한 줄 소개: {{ userDesciption }}</p>
+            <p>한 줄 소개: {{ userDesciption|default:''  }}</p>
         </div>
 
 
