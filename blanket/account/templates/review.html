@@ -12,9 +12,11 @@
             <p class="title">의견 남기기</p>
         </div>
         <div class="contentsBody">
+        <form method="post">
+            {% csrf_token %}
             <div class="stars">
                 <fieldset>
-                    <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
+                    <input type="radio" name="reviewStar" value="5" id="rate1" required><label for="rate1">★</label>
 		            <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
 		            <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
 		            <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
@@ -24,11 +26,26 @@
             <div class="reviewBox">
                 <textarea class="textbox" name="text" rows="8" cols="50" placeholder="자유롭게 의견을 남겨주세요."></textarea>
             </div>
+
+            <input type="number" min="1" max="5" name="selected_stars" id="selected-stars-input" style="display:none;">
             <button>보내기</button>
+        </form>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+    const stars = document.querySelectorAll('input[type="radio"]');
+    const selectedStarsInput = document.getElementById('selected-stars-input');
+
+    stars.forEach((star) => {
+        star.addEventListener('click', (e) => {
+            const selectedStar = e.target.value;
+            selectedStarsInput.value = selectedStar;
+        });
+    });
+</script>
 
 <style>
     body {

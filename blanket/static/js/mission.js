@@ -159,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //
 // when buttons clicked, Change FE and complete data
 //
+
 let missionButtons = document.querySelectorAll('.main-mission, .sub-mission');
 
 missionButtons.forEach(button => {
