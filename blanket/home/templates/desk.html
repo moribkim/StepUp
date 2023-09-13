@@ -17,12 +17,14 @@
                 </div>    
             </div>
             <div class="body">
-                <button class="calendarBtn" onclick="location.href='calendar'"></button>
-                <button class="recordBtn" onclick="loaction.href='record'"></button>
+                <button class="calendarBtn" onclick="location.href='{% url 'mood_calendar' %}';"></button>
+                <button class="recordBtn" onclick="location.href='{% url 'record' %}';"></button>            
             </div>
             <div class="footer">
                 <div class="Btn-bar">
-                    <button class="Btn-user"></button>
+                    <button class="Btn-user" onclick="location.href='{% url 'profile' %}';">
+                        <!--마이페이지-->
+                    </button>
                     <button class="Btn-help"></button>
                     <button class="Btn-setting"></button>
                 </div>
