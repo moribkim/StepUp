@@ -160,7 +160,11 @@ document.addEventListener("DOMContentLoaded", function() {
 // when buttons clicked, Change FE and complete data
 //
 
+
+// mission button clicked
 let missionButtons = document.querySelectorAll('.main-mission, .sub-mission');
+let shuffleButtons = document.querySelectorAll('.main-shuffle, .sub-shuffle');
+const subMission = document.querySelector('.sub-content');
 
 missionButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -168,6 +172,43 @@ missionButtons.forEach(button => {
         // Get id and type data of the button
         let missionId = button.getAttribute('data-mission-id');
         let missionType = button.getAttribute('data-mission-type');
+        
+        // Fetch data
+        fetch(`/mission/complete_mission_js/${missionId}`, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Mission completed, Change FE
+            if (data.completed) {
+                button.style.backgroundColor = "#FFF7D9";
+
+                if(data.type == "main"){
+                    MainMisComplete();
+                }
+            }
+            // Mission incompleted, Change FE
+            else {
+                button.style.backgroundColor = "#C6C993";
+
+                if(data.type == "main"){
+                    MainMisInComplete();
+                }
+            }
+        });
+    });
+});
+
+shuffleButtons.forEach(button => {
+    button.addEventListener('click', function() {
+
+        // Get id and type data of the button
+        let missionId = button.getAttribute('data-mission-id');
+        let missionName = button.getAttribute('data-mission-name//');
         
         // Fetch data
         fetch(`/mission/complete_mission_js/${missionId}`, {
