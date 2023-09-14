@@ -58,6 +58,7 @@ modalClose.addEventListener('click', () => {
 // Mission Popup page
 //
 const mainBtn = document.querySelector('.main-mission');
+const mainTitle = document.querySelector('.main-title');
 const misFixed = document.querySelector('.mission-fixed');
 const misExplain = document.querySelector('.mission-explanation');
 const mainShuf = document.querySelector('.main-shuffle');
@@ -148,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(subMissionsCompleted === "true"){
             // completed style
             subBtn[i].style.backgroundColor = "#FFF7D9";
+            subShuf[i].style.display = "none";
         }
         else{
             // incompleted style
@@ -159,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function() {
 //
 // when buttons clicked, Change FE and complete data
 //
-
 
 // mission button clicked
 let missionButtons = document.querySelectorAll('.main-mission, .sub-mission');
@@ -185,19 +186,27 @@ missionButtons.forEach(button => {
         .then(data => {
             // Mission completed, Change FE
             if (data.completed) {
-                button.style.backgroundColor = "#FFF7D9";
-
                 if(data.type == "main"){
                     MainMisComplete();
                 }
+
+                button.style.backgroundColor = "#FFF7D9";
+                for(let i=0; i < 4; i++){
+                    if(missionButtons[i] == button)
+                    subShuf[i-1].style.display = "none";
+                };
             }
             // Mission incompleted, Change FE
             else {
-                button.style.backgroundColor = "#C6C993";
-
                 if(data.type == "main"){
                     MainMisInComplete();
                 }
+
+                button.style.backgroundColor = "#C6C993";
+                for(let i=0; i < 4; i++){
+                    if(missionButtons[i] == button)
+                    subShuf[i-1].style.display = "block";
+                };
             }
         });
     });
@@ -205,13 +214,10 @@ missionButtons.forEach(button => {
 
 shuffleButtons.forEach(button => {
     button.addEventListener('click', function() {
-
-        // Get id and type data of the button
         let missionId = button.getAttribute('data-mission-id');
-        let missionName = button.getAttribute('data-mission-name//');
-        
+        let missionType = button.getAttribute('data-mission-type');
         // Fetch data
-        fetch(`/mission/complete_mission_js/${missionId}`, {
+        fetch(`/mission/change_mission_js/${missionId}`, {
             method: 'GET',
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
@@ -220,22 +226,18 @@ shuffleButtons.forEach(button => {
         })
         .then(response => response.json())
         .then(data => {
-            // Mission completed, Change FE
-            if (data.completed) {
-                button.style.backgroundColor = "#FFF7D9";
-
                 if(data.type == "main"){
-                    MainMisComplete();
+                    mainTitle.innerHTML = data.name;
+                    misExplain.innerHTML = data.description;
                 }
-            }
-            // Mission incompleted, Change FE
-            else {
-                button.style.backgroundColor = "#C6C993";
-
-                if(data.type == "main"){
-                    MainMisInComplete();
+                else if(data.type == "sub"){
+                    for(let i=0; i < 4; i++){
+                        if(shuffleButtons[i] == button){
+                            subMis[i-1].innerHTML = data.name;
+                            break;
+                        }
+                    }
                 }
-            }
         });
     });
 });
