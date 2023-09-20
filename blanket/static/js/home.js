@@ -1,7 +1,7 @@
 const appBody = document.getElementsByClassName("appBody")[0];
 const winBtn = document.getElementsByClassName("windowBtn")[0];
 const homeImg = appBody.style.backgroundImage;
-
+let dark = true;
 
 // When dom loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,13 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => {
-        if (true) {
+        if (data.brightness) {
             // when brightening is true - change background bright
             appBody.style.backgroundImage = "url(/static/home-bright-open.png)"
+            dark = false;
         }
         else {
             // when brightening is false - change background dark
             appBody.style.backgroundImage = "url(/static/home-dark-close.png)"
+            dark = true;
         }
     });
 });
@@ -50,7 +52,19 @@ function getCookie(name) {
 
 // Change background Img to bright image when click window
 winBtn.addEventListener("click", () => {
-        appBody.style.backgroundImage = "url(../home-bright-open.png)"
+    let mission_url = winBtn.getAttribute("data-mission-url");
+
+    if(dark){
+        appBody.style.backgroundImage = "url(/static/home-bright-open.png)";
+        dark = false;
+        
+        setTimeout(() => {
+            window.location.href = mission_url;
+        }, 500);
+    }
+    else{
+        window.location.href = mission_url;
+    }
 });
 
 //
