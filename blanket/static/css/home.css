@@ -3,39 +3,32 @@
     margin: 0px;
 }
 
-@media screen and (max-width: 576px){
-    .appBody{
-        width: 390px;
-        height: 844px;
-    }
+@media screen and (max-width: 389px){
+}
+
+@media screen and (min-width: 390px) and (max-width: 576px) {
 }
 
 @media screen and (min-width: 577px) and (max-width: 768px) {
-    .appBody{
-        width: 390px;
-        height: 844px;
-    }
+    /* .appBody{
+        width: 577px;
+        height: 1248px;
+    } */
 }
 
-@media screen and (min-width: 769px) and (max-width: 992px){
-    .appBody{
-        width: 390px;
-        height: 844px;
-    }
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    /* .appBody{
+        width: 769px;
+        height: 1644px;
+    } */
 }
-/*너비가 993px - 1200px의 style*/
-@media screen and (min-width: 993px) and (max-width: 1200px){
-    .appBody{
-        width: 780px;
-        height: 1688px;
-    }
+
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+
 }
-/*너비가 최소 1201px부터의 style*/
+
 @media screen and (min-width: 1201px) {
-    .appBody{
-        width: 390px;
-        height: 844px;
-    }
+
 }
 
 body{
@@ -66,6 +59,8 @@ button:hover{
 .appBody{
     width: 390px;
     height: 844px;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-image: url(/static/home-dark-close.png);
 
     display: flex;
@@ -145,12 +140,13 @@ button:hover{
 .footer{
     width: 100%;
     height: 25%;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .Btn-bar{
     position: relative;
     top: 70px;
-    left: 248px;
 
     display: flex;
     justify-content: space-evenly;
